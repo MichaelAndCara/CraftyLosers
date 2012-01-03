@@ -1,0 +1,7 @@
+C:\_HOME\WebApps\CraftyLosers\CraftyLosers\bin\CraftyLosers.dll
+C:\_HOME\WebApps\CraftyLosers\CraftyLosers\bin\CraftyLosers.pdb
+C:\_HOME\WebApps\CraftyLosers\CraftyLosers\bin\EntityFramework.dll
+C:\_HOME\WebApps\CraftyLosers\CraftyLosers\bin\EntityFramework.xml
+C:\_HOME\WebApps\CraftyLosers\CraftyLosers\obj\Debug\ResolveAssemblyReference.cache
+C:\_HOME\WebApps\CraftyLosers\CraftyLosers\obj\Debug\CraftyLosers.dll
+C:\_HOME\WebApps\CraftyLosers\CraftyLosers\obj\Debug\CraftyLosers.pdb
