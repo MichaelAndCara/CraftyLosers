@@ -1,0 +1,71 @@
+﻿@model CraftyLosers.ViewModels.Register
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class="form-stacked" }))
+{
+    @Html.ValidationSummary(true)
+    <div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.User.UserName)
+            @Html.ValidationMessageFor(model => model.User.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.User.PW)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.User.PW)
+            @Html.ValidationMessageFor(model => model.User.PW)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConfirmPassword)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ConfirmPassword)
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.Active)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Admin)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Admin)
+            @Html.ValidationMessageFor(model => model.Admin)
+        </div>*@
+
+        <div class="actions">
+            <input type="submit" value="Create" class="btn primary" /> @Html.ActionLink("Cancel", "Index", "Home", null, new { @class="btn secondary" })
+        </div>
+    </div>
+}
+
+@section javascript
+{
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+}

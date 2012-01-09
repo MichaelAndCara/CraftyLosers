@@ -69,10 +69,15 @@
             font-weight: bold;
             color: #ff0000;
         }
-        
+                
         .validation-summary-valid
         {
             display: none;
+        }
+        
+        .display-field
+        {
+            margin: 0 0 0.5em 0;
         }
     </style>
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js" type="text/javascript"></script>
@@ -84,13 +89,13 @@
             <div class="container">
                 @Html.ActionLink("Crafty Losers", "Index", "Home", null, new { @class = "brand" })
                 <ul class="nav">
-                    <li><a href="#">Account</a></li>
+                    <li>@Html.ActionLink("Account", "Account", "Account")</li>
                     <li><a href="#">Weight Check Ins</a></li>
                     <li><a href="#">Stats</a></li>
                     <li><a href="#">Posts</a></li>
                 </ul>
                 <ul class="nav secondary-nav">
-                    <li><strong>@(HttpContext.Current.User.Identity.IsAuthenticated ? Html.ActionLink("Logout", "SignOut", "User") : Html.ActionLink("Login", "Login", "User"))</strong></li>
+                    <li><strong>@(HttpContext.Current.User.Identity.IsAuthenticated ? Html.ActionLink("Logout", "LogOff", "Account") : Html.ActionLink("Login", "LogOn", "Account"))</strong></li>
                 </ul>
             </div>
         </div>
