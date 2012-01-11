@@ -5,16 +5,10 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace CraftyLosers.Models
+namespace CraftyLosers.ViewModels
 {
-    public class WeightCheckIn
+    public class CheckIn
     {
-        [DisplayName("Weight CheckIn Id")]
-        public int Id { get; set; }
-
-        [DisplayName("User Id")]
-        public int UserId { get; set; }
-
         [Required]
         [DisplayName("CheckIn Date")]
         [DataType(DataType.Date)]

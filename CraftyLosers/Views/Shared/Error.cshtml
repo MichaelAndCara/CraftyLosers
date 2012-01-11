@@ -1,15 +1,18 @@
-﻿@{
-    Layout = null;
+﻿@model System.Web.Mvc.HandleErrorInfo
+           
+@{
+    ViewBag.Title = "Error";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Error</title>
-</head>
-<body>
-    <h2>
-        Sorry, an error occurred while processing your request.
-    </h2>
-</body>
-</html>
+    <p>
+        Controller:  @Model.ControllerName
+    </p>
+    <p>
+        Action:  @Model.ActionName
+    </p>
+    <p>
+        Exception Message:  @Model.Exception.Message
+    </p>
+    <p>
+        Exception:  @Model.Exception
+    </p>

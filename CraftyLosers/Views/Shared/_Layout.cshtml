@@ -5,6 +5,7 @@
     <title>@ViewBag.Title</title>
     <link href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css" rel="stylesheet"
         type="text/css" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <style type="text/css">
         html, body
         {
@@ -64,7 +65,7 @@
             background-color: #ffeeee;
         }
         
-        .validation-summary-errors
+        .validation-summary-errors li
         {
             font-weight: bold;
             color: #ff0000;
@@ -80,7 +81,7 @@
             margin: 0 0 0.5em 0;
         }
     </style>
-    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js" type="text/javascript"></script>
+    
     @*<script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>*@
 </head>
 <body>
@@ -89,8 +90,18 @@
             <div class="container">
                 @Html.ActionLink("Crafty Losers", "Index", "Home", null, new { @class = "brand" })
                 <ul class="nav">
-                    <li>@Html.ActionLink("Account", "Account", "Account")</li>
-                    <li><a href="#">Weight Check Ins</a></li>
+                    <li class="dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Account</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("My Account", "Account", "Account")</li>
+                            <li>@Html.ActionLink("Change Password", "ChangePassword", "Account")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Weight</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Weight CheckIns", "WeightCheckIns", "Weight")</li>
+                            <li>@Html.ActionLink("CheckIn", "CheckIn", "Weight")</li>        
+                        </ul>
+                    </li>                    
                     <li><a href="#">Stats</a></li>
                     <li><a href="#">Posts</a></li>
                 </ul>
@@ -107,6 +118,8 @@
         <footer>
     </footer>
     </div>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")" type="text/javascript"></script>
     @RenderSection("javascript", required: false)
 </body>
 </html>

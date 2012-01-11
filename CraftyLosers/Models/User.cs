@@ -10,6 +10,7 @@ using System.Web.Security;
 using System.Web.Mvc;
 using System.Net.Mail;
 using System.Net;
+using CraftyLosers.Util;
 
 namespace CraftyLosers.Models
 {
@@ -38,17 +39,14 @@ namespace CraftyLosers.Models
 
         [DisplayName("Start Weight")]
         [Range(typeof(Decimal), "80", "500", ErrorMessage = "Weight must be between 80.00 and 500.00")]
-        [RegularExpression(@"[0-9]*\.?[0-9]+")]
         public decimal? StartWeight { get; set; }
 
         [DisplayName("Goal Weight")]
         [Range(typeof(Decimal), "80", "500", ErrorMessage = "Weight must be between 80.00 and 500.00")]
-        [RegularExpression(@"[0-9]*\.?[0-9]+")]
         public decimal? GoalWeight { get; set; }
 
         [DisplayName("End Weight")]
         [Range(typeof(Decimal), "80", "500", ErrorMessage = "Weight must be between 80.00 and 500.00")]
-        [RegularExpression(@"[0-9]*\.?[0-9]+")]
         public decimal? EndWeight { get; set; }
 
         public bool Admin { get; set; }
@@ -84,32 +82,6 @@ namespace CraftyLosers.Models
         public void SignOut()
         {
             FormsAuthentication.SignOut();
-        }
-    }
-
-    public class AccountEmailManager
-    {
-        public void EmailRegister(User user)
-        {
-            var fromAddress = new MailAddress("craftyloser@gmail.com");
-            var toAddress = new MailAddress(user.Email, user.UserName);
-            const string fromPassword = "pr3v3n1n9";
-            const string subject = "Welcome to Crafty Losers!";
-            string body = "Welcome to Crafty Losers!  Good luck!";
-
-            var smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-            };
-            using (var message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = body })
-            {
-                smtp.Send(message);
-            }
         }
     }
 }

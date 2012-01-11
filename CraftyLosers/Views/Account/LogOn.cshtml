@@ -32,7 +32,9 @@
             @Html.ValidationMessageFor(model => model.RememberMe)
         </div>
         <div class="actions">
-            <input type="submit" value="Log On" class="btn primary" /> @Html.ActionLink("Cancel", "Index", "Home", null, new { @class="btn secondary" })
+            <input type="submit" value="Log On" class="btn primary" /> 
+            @Html.ActionLink("Register", "Register", "Account", null, new { @class="btn secondary" })
+            @Html.ActionLink("Forgot Password?", "ResetPassword", "Account", null, new { @class="btn secondary" })
         </div>
     </div>
 }
