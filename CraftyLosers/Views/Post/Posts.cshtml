@@ -1,0 +1,92 @@
+﻿@model IEnumerable<CraftyLosers.Models.Post>
+
+@{
+    ViewBag.Title = "Posts";
+}
+
+<h2>Posts</h2>
+
+<div class="actions form-stacked">
+    @Html.ActionLink("Add Post", "Post", "Post", null, new { @class = "btn primary" })
+</div>
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="border-bottom: 2px solid Navy; border-top: 2px solid Navy;">
+                <div class="postWrapper">
+                    <div class="postTitle">
+                        @item.Title
+                    </div>
+                    <div class="postDetails">
+                        by: @(item.User.DisplayName ? item.User.UserName : item.UserId.ToString())
+                        on @item.DateCreated
+                        @if (User.Identity.Name.ToLower() == item.User.UserName.ToLower())
+                        { 
+                            <span style="padding-left: 5px; text-decoration: none;">
+                                @Html.ActionLink("Edit", "EditPost", new { id = item.Id }) | 
+                                @Html.ActionLink("Delete", "DeletePost", new { id = item.Id })
+                            </span>
+                        }
+                    </div>
+                    <div class="postContent">
+                        @item.PostContent
+                    </div>
+                    <div style="text-align: right; padding: 5px;">
+                        @Html.ActionLink("Comment", "Comment", new { id = item.Id })
+                    </div>
+                    <div style="padding-left: 50px;">
+                        @Html.Partial("_Comments", item.Comments)
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+@*<table>
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            PostContent
+        </th>
+        <th>
+            DateCreated
+        </th>
+        <th>
+            DateModified
+        </th>
+        <th>
+            UserId
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateModified)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+*@

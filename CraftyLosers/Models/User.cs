@@ -20,11 +20,11 @@ namespace CraftyLosers.Models
         public int Id { get; set; }
 
         [Required]
-        [DisplayName("User name")]
+        [DisplayName("Username")]
         [StringLength(20, MinimumLength = 3, ErrorMessage = "User name must not be less than 3 or exceed 20 characters.")]
         public string UserName { get; set; }
 
-        [DisplayName("Display User Name")]
+        [DisplayName("Display Username To Others")]
         public bool DisplayName { get; set; }
 
         [Required]

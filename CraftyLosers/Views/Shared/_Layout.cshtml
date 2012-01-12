@@ -6,6 +6,7 @@
     <link href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css" rel="stylesheet"
         type="text/css" />
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/redmond/jquery-ui-1.8.17.custom.css")" rel="stylesheet" type="text/css" />
     <style type="text/css">
         html, body
         {
@@ -80,6 +81,42 @@
         {
             margin: 0 0 0.5em 0;
         }
+        
+        /* Styles for Posts
+        -----------------------------------------------------------*/
+        .postGrid
+        {
+	        border: solid 1px #0099FF;
+        }
+
+        .postLeftCol
+        {
+	        width: 700px;
+        }
+        .postTitle
+        {
+	        font-family: Verdana, Arial;
+	        font-size: 14px;
+	        font-weight: bold;
+	        color: Navy;
+        }
+        .postDetails
+        {
+	        font-family: Verdana, Arial;
+	        font-size: 10px;
+	        color: Gray;
+        }
+
+        .postWrapper
+        {
+	        padding: 5px;
+	        list-style-position:inside;
+        }
+        .postContent
+        {
+	        padding: 5px;
+	        background-color: whiteSmoke;
+        }
     </style>
     
     @*<script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>*@
@@ -103,7 +140,7 @@
                         </ul>
                     </li>                    
                     <li><a href="#">Stats</a></li>
-                    <li><a href="#">Posts</a></li>
+                    <li>@Html.ActionLink("Posts", "Posts", "Post")</li>
                 </ul>
                 <ul class="nav secondary-nav">
                     <li><strong>@(HttpContext.Current.User.Identity.IsAuthenticated ? Html.ActionLink("Logout", "LogOff", "Account") : Html.ActionLink("Login", "LogOn", "Account"))</strong></li>
@@ -119,6 +156,7 @@
     </footer>
     </div>
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.17.custom.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/bootstrap.min.js")" type="text/javascript"></script>
     @RenderSection("javascript", required: false)
 </body>

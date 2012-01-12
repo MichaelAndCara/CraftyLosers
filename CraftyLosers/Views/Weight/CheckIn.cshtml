@@ -2,24 +2,14 @@
 
 @{
     ViewBag.Title = "CheckIn";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>CheckIn</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("CheckIn", "Weight", FormMethod.Post, new { @class = "form-stacked" }))
+{
     @Html.ValidationSummary(true)
-    <div>
-        
-        @*<div class="editor-label">
-            @Html.LabelFor(model => model.UserId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UserId)
-            @Html.ValidationMessageFor(model => model.UserId)
-        </div>*@
-        @*@Html.HiddenFor(model => model.UserId)*@
-
+    <div>        
         <div class="editor-label">
             @Html.LabelFor(model => model.CheckInDate)
         </div>
@@ -36,17 +26,24 @@
             @Html.ValidationMessageFor(model => model.Weight)
         </div>
 
-        <p>
-            <input type="submit" value="Create" />
-        </p>
+        <div class="actions">
+            <input type="submit" value="Create" class="btn primary" /> @Html.ActionLink("Cancel", "WeightCheckIns", null, new { @class="btn secondary" })
+        </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 @section javascript
 {
     <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#CheckInDate").datepicker(
+            {
+                minDate: new Date("1/17/2012"),
+                maxDate: new Date("4/29/2012")
+            });
+
+            $("#CheckInDate").attr('readonly', true);
+        });
+	</script>
 }

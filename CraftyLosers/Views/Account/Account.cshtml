@@ -18,6 +18,11 @@
         @Html.HiddenFor(model => model.Admin)
         @Html.HiddenFor(model => model.Paid)
         <div class="display-label">
+            User Id</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Id)
+        </div>
+        <div class="display-label">
             User Name</div>
         <div class="display-field">
             @Html.DisplayFor(model => model.UserName)
@@ -51,8 +56,8 @@
             @Html.LabelFor(model => model.DisplayName)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.DisplayName)
-            @Html.ValidationMessageFor(model => model.DisplayName)
+            @Html.EditorFor(model => model.DisplayName) <span class="label notice">(Uncheck if you want to be more anonymous.)</span>
+            @Html.ValidationMessageFor(model => model.DisplayName)            
         </div>
         <div class="actions">
             <input type="submit" value="Save" class="btn primary" />

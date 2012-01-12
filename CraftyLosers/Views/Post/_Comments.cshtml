@@ -1,0 +1,71 @@
+﻿@model IEnumerable<CraftyLosers.Models.Comment>
+
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <div class="postWrapper">
+                    <div class="postDetails">
+                        Comment by: @(item.User.DisplayName ? item.User.UserName : item.UserId.ToString())
+                        on @item.CommentDateTime
+                        <span style="padding-left: 5px; text-decoration: none;">
+                            @if (User.Identity.Name.ToLower() == item.User.UserName.ToLower())
+                            { 
+                                @Html.ActionLink("Edit", "EditComment", new { id = item.Id })                                
+                            }
+                            @if (User.Identity.Name.ToLower() == item.User.UserName.ToLower() || User.Identity.Name.ToLower() == item.Post.User.UserName.ToLower())
+                            {
+                                <text> | </text>@Html.ActionLink("Delete", "DeleteComment", new { id = item.Id })
+                            }
+                        </span>
+                    </div>
+                    <div class="postContent">
+                        @item.CommentContent
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+
+@*<table>
+    <tr>
+        <th>
+            PostId
+        </th>
+        <th>
+            CommentDateTime
+        </th>
+        <th>
+            CommentContent
+        </th>
+        <th>
+            UserId
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CommentDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CommentContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>*@

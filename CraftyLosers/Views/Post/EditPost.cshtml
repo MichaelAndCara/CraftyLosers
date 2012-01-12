@@ -1,0 +1,42 @@
+﻿@model CraftyLosers.Models.Post
+
+@{
+    ViewBag.Title = "Edit Post";
+}
+
+<h2>Edit Post</h2>
+
+@using (Html.BeginForm("EditPost", "Post", FormMethod.Post, new { @class = "form-stacked" }))
+{
+    @Html.ValidationSummary(true)
+    <div>
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.DateCreated)
+        @Html.HiddenFor(model => model.DateModified)
+        @Html.HiddenFor(model => model.UserId)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PostContent)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PostContent)
+            @Html.ValidationMessageFor(model => model.PostContent)
+        </div>
+        <div class="actions">
+            <input type="submit" value="Save" class="btn primary" />
+            @Html.ActionLink("Cancel", "Posts", "Post", null, new { @class = "btn secondary" })
+        </div>
+    </div>
+}
+@section javascript
+{
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+}

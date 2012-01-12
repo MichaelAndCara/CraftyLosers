@@ -1,0 +1,42 @@
+﻿@model CraftyLosers.Models.Post
+
+@{
+    ViewBag.Title = "Delete Post";
+}
+
+<h2>Delete Post</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div class="form-stacked">
+    <div class="display-label">Title</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">PostContent</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PostContent)
+    </div>
+
+@*    <div class="display-label">DateCreated</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateCreated)
+    </div>
+
+    <div class="display-label">DateModified</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateModified)
+    </div>
+
+    <div class="display-label">UserId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserId)
+    </div>*@
+</div>
+@using (Html.BeginForm("DeletePost", "Post", FormMethod.Post, new { @class = "form-stacked" }))
+{
+    <div>
+        <input type="submit" value="Delete" class="btn primary" /> 
+        @Html.ActionLink("Cancel", "Posts", "Post", null, new { @class = "btn secondary" })
+    </div>
+}
