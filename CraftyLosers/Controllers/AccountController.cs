@@ -298,5 +298,23 @@ namespace CraftyLosers.Controllers
             ViewBag.Notify = "Username sent to your email";
             return View();
         }
+
+        public ActionResult AdminWeights()
+        {
+            return View(db.Users);
+        }
+
+        public ActionResult AdminWeightEdit(int id)
+        {
+            return View(db.Users.Find(id));
+        }
+
+        [HttpPost]
+        public ActionResult AdminWeightEdit(User user)
+        {
+            db.Entry(user).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("AdminWeights");
+        }
     }
 }

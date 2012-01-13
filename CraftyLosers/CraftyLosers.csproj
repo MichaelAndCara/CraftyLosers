@@ -207,6 +207,21 @@
   <ItemGroup>
     <Content Include="Views\Post\DeletePost.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Post\Comment.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Post\DeleteComment.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Post\EditComment.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\AdminWeights.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\AdminWeightEdit.cshtml" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

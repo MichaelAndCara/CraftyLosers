@@ -61,15 +61,14 @@
         </div>
         <div class="actions">
             <input type="submit" value="Save" class="btn primary" />
+            @if (Model.Admin)
+            {
+                @Html.ActionLink("Admin Weights", "AdminWeights", "Account", null, new { @class="btn secondary" })
+            }
         </div>
     </div>
 }
-<div style="padding-top: 20px;">
-    @if (Model.Admin)
-    {
-        @Html.ActionLink("Admin Weights", "AdminWeights")
-    }
-</div>
+
 @section javascript
 {
     <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>

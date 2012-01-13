@@ -13,8 +13,8 @@ namespace CraftyLosers.Util
         private MySmtpClient MySmtpClient { get { return _mySmtpClient ?? (_mySmtpClient = new MySmtpClient()); } }
 
         public MyEmail(string toAddress) : base("craftyloser@gmail.com", toAddress)
-        { }
-
-
+        {
+            base.Bcc.Add("craftyloser@gmail.com");
+        }
     }
 }

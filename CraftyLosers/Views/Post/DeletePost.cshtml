@@ -13,25 +13,10 @@
         @Html.DisplayFor(model => model.Title)
     </div>
 
-    <div class="display-label">PostContent</div>
+    <div class="display-label">Post</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.PostContent)
     </div>
-
-@*    <div class="display-label">DateCreated</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.DateCreated)
-    </div>
-
-    <div class="display-label">DateModified</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.DateModified)
-    </div>
-
-    <div class="display-label">UserId</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.UserId)
-    </div>*@
 </div>
 @using (Html.BeginForm("DeletePost", "Post", FormMethod.Post, new { @class = "form-stacked" }))
 {

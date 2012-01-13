@@ -62,6 +62,11 @@ namespace CraftyLosers.Controllers
         [HttpPost]
         public ActionResult DeletePost(Post post)
         {
+            var comments = db.Comments.Where(e => e.PostId == post.Id);
+            foreach (var comment in comments)
+            {
+                db.Entry(comment).State = System.Data.EntityState.Deleted;
+            }
             db.Entry(post).State = System.Data.EntityState.Deleted;
             db.SaveChanges();
 
@@ -71,9 +76,14 @@ namespace CraftyLosers.Controllers
         public ActionResult Comment(int id)
         {
             var post = db.Posts.Find(id);
-            ViewBag.PostTitle = post.Title;
-            ViewBag.PostContent = post.PostContent;
-            return View();
+            return View(
+                new Comment() 
+                { 
+                    Id = 0,
+                    UserId = db.Users.Where(e => e.UserName == HttpContext.User.Identity.Name).FirstOrDefault().Id,
+                    PostId = id, 
+                    Post = post 
+                });
         }
 
         [HttpPost]
@@ -84,6 +94,34 @@ namespace CraftyLosers.Controllers
             comment.UserId = user.Id;
 
             db.Entry(comment).State = System.Data.EntityState.Added;
+            db.SaveChanges();
+
+            return RedirectToAction("Posts");
+        }
+
+        public ActionResult EditComment(int id)
+        {
+            return View(db.Comments.Find(id));
+        }
+
+        [HttpPost]
+        public ActionResult EditComment(Comment comment)
+        {
+            db.Entry(comment).State = System.Data.EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Posts");
+        }
+
+        public ActionResult DeleteComment(int id)
+        {
+            return View(db.Comments.Find(id));
+        }
+        
+        [HttpPost]
+        public ActionResult DeleteComment(Comment comment)
+        {
+            db.Entry(comment).State = System.Data.EntityState.Deleted;
             db.SaveChanges();
 
             return RedirectToAction("Posts");

@@ -1,0 +1,24 @@
+﻿@model CraftyLosers.Models.Comment
+
+@{
+    ViewBag.Title = "Delete Comment";
+}
+
+<h2>Delete Comment</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.UserId)
+    <div class="display-label">Comment</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CommentContent)
+    </div>
+</div>
+@using (Html.BeginForm("DeleteComment", "Post", FormMethod.Post, new { @class = "form-stacked" }))
+{
+    <div class="actions">
+        <input type="submit" value="Delete" class="btn primary" />
+        @Html.ActionLink("Cancel", "Posts", "Post", null, new { @class = "btn secondary" })
+    </div>
+}

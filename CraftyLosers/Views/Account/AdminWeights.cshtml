@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CraftyLosers.Models.User>
+
+@{
+    ViewBag.Title = "Admin Weights";
+}
+
+<h2>Admin Weights</h2>
+
+<table>
+    <tr>
+        <th>
+            User ID
+        </th>
+        <th>
+            User Name
+        </th>
+        <th>
+            Active
+        </th>
+        <th>
+            Start Weight
+        </th>
+        <th>
+            End Weight
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartWeight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndWeight)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "AdminWeightEdit", new { id=item.Id })
+        </td>
+    </tr>
+}
+</table>

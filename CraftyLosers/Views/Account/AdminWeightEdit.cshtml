@@ -1,0 +1,65 @@
+﻿@model CraftyLosers.Models.User
+
+@{
+    ViewBag.Title = "Admin Weight";
+}
+
+<h2>Admin Weight</h2>
+
+@using (Html.BeginForm("AdminWeightEdit", "Account", FormMethod.Post, new { @class="form-stacked" }))
+{
+    @Html.ValidationSummary(true)
+    <div>
+        @Html.HiddenFor(model => model.UserName)
+        @Html.HiddenFor(model => model.PW)
+        @Html.HiddenFor(model => model.DisplayName)
+        @Html.HiddenFor(model => model.SignUpDateTime)
+        @Html.HiddenFor(model => model.GoalWeight)
+        @Html.HiddenFor(model => model.Admin)
+        @Html.HiddenFor(model => model.Paid)
+        @Html.HiddenFor(model => model.Email)
+        <div class="display-label">
+            @Html.LabelFor(model => model.Id)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Id)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.UserName)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Active)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartWeight)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StartWeight)
+            @Html.ValidationMessageFor(model => model.StartWeight)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndWeight)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EndWeight)
+            @Html.ValidationMessageFor(model => model.EndWeight)
+        </div>
+
+        <div class="actions">
+            <input type="submit" value="Save" class="btn primary" />
+            @Html.ActionLink("Cancel", "AdminWeights", "Account", null, new { @class="btn secondary" })
+        </div>
+    </div>
+}
+
