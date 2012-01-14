@@ -61,6 +61,7 @@
         </div>
         <div class="actions">
             <input type="submit" value="Save" class="btn primary" />
+            @Html.ActionLink("Change Password", "ChangePassword", "Account", null, new { @class="btn secondary" })
             @if (Model.Admin)
             {
                 @Html.ActionLink("Admin Weights", "AdminWeights", "Account", null, new { @class="btn secondary" })

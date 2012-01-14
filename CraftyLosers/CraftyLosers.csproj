@@ -78,12 +78,14 @@
     <Compile Include="Repositories\CraftyContext.cs" />
     <Compile Include="Util\MyEmail.cs" />
     <Compile Include="Util\MySmtpClient.cs" />
+    <Compile Include="Util\PagerExtension.cs" />
     <Compile Include="ViewModels\ChangePassword.cs" />
     <Compile Include="ViewModels\CheckIn.cs" />
     <Compile Include="ViewModels\ForgotUserNameOrPassword.cs" />
     <Compile Include="ViewModels\LogOn.cs" />
     <Compile Include="ViewModels\Register.cs" />
     <Compile Include="ViewModels\ResetPassword.cs" />
+    <Compile Include="ViewModels\Stats.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -136,7 +138,9 @@
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -221,6 +225,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\AdminWeightEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Weight\Stats.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

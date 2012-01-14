@@ -127,23 +127,18 @@
             <div class="container">
                 @Html.ActionLink("Crafty Losers", "Index", "Home", null, new { @class = "brand" })
                 <ul class="nav">
-                    <li class="dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Account</a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("My Account", "Account", "Account")</li>
-                            <li>@Html.ActionLink("Change Password", "ChangePassword", "Account")</li>
-                        </ul>
-                    </li>
+                    <li>@Html.ActionLink("Account", "Account", "Account")</li>
                     <li class="dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">Weight</a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Weight CheckIns", "WeightCheckIns", "Weight")</li>
-                            <li>@Html.ActionLink("CheckIn", "CheckIn", "Weight")</li>        
+                            <li>@Html.ActionLink("Stats", "Stats", "Weight")</li>   
                         </ul>
-                    </li>                    
-                    <li><a href="#">Stats</a></li>
+                    </li>
                     <li>@Html.ActionLink("Posts", "Posts", "Post")</li>
+                    <li><a href=#>CL-RPG</a></li>
                 </ul>
                 <ul class="nav secondary-nav">
-                    <li><strong>@(HttpContext.Current.User.Identity.IsAuthenticated ? Html.ActionLink("Logout", "LogOff", "Account") : Html.ActionLink("Login", "LogOn", "Account"))</strong></li>
+                    <li><strong>@(HttpContext.Current.User.Identity.IsAuthenticated ? Html.ActionLink("Logout " + HttpContext.Current.User.Identity.Name, "LogOff", "Account") : Html.ActionLink("Login", "LogOn", "Account"))</strong></li>
                 </ul>
             </div>
         </div>

@@ -58,6 +58,7 @@ namespace CraftyLosers.Controllers
                         Encoding.ASCII.GetBytes(register.ConfirmPassword)));
                 register.User.SignUpDateTime = DateTime.Now;
                 register.User.Email = register.Email;
+                register.User.Active = true;
 
                 var newUser = register.User;
 
