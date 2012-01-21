@@ -1,19 +1,63 @@
-﻿@{
+﻿@model IEnumerable<CraftyLosers.ViewModels.Stats>
+@{
     ViewBag.Title = "Crafty Losers";
 }
-
-<h2>Coming soon to a scale near you...</h2>
-<div>
-	<ul>
-		<li>Contest lasts from January 16th to April 27th.</li>
-		<li>Contest is FREE to join.</li>
-		<li>We are using a digital scale this year, but we need to find one.  If you have an accurate scale to loan for a few months, please let me know.</li>
-		<li>Other departments, family, or friends are allowed to enter.  They just need to weigh in up here for the entry weight and the final weight.</li>
-		<li>Joann Burner has accepted the role as the Scale Master.</li>
-		<li>Joann Burner will enter your Start Weight at the beginning of the contest and your Final Weight at the end of the contest.</li>
-		<li>The winners will be determined by the greatest percentage of weight lost.</li>
-		<li>Sign up anonymously, or not, on this site.  Sign up will be available soon.</li>
-		<li>You may record you weight as many times as you like between the start and end dates, which will reflect progress.</li>
-		<li>Tools, reports, charts, goals, etc may be added to the site eventually.  Recommendations are always welcomed and are needed.</li>
-	</ul>
+<div class="row">
+    <div class="span10">
+        <h2>
+            Now showing on select scales...</h2>
+        <ul>
+            <li>Contest lasts from January 16th to April 27th.</li>
+            <li>Contest is FREE to join.</li>
+            <li>We are using a digital scale this year, but we need to find one. If you have an
+                accurate scale to loan for a few months, please let me know.</li>
+            <li>Other departments, family, or friends are allowed to enter. They just need to weigh
+                in up here for the entry weight and the final weight.</li>
+            <li>Joann Burner has accepted the role as the Scale Master.</li>
+            <li>Joann Burner will enter your Start Weight at the beginning of the contest and your
+                Final Weight at the end of the contest.</li>
+            <li>The winners will be determined by the greatest percentage of weight lost.</li>
+            <li>Sign up anonymously, or not, on this site. Sign up will be available soon.</li>
+            <li>You may record you weight as many times as you like between the start and end dates,
+                which will reflect progress.</li>
+            <li>Tools, reports, charts, goals, etc may be added to the site eventually. Recommendations
+                are always welcomed and are needed.</li>
+            <li>Crafty Losers RPG coming soon!</li>
+        </ul>
+        <hr />
+        <span class="label notice">(unofficially)</span>
+        <h2>Total Crafty Weight Lost: @ViewBag.TotalLost pounds</h2>
+    </div>
+    <div class="span4">
+        <h3>
+            Ranking</h3>
+        <table>
+            <tr>
+                <th>
+                    User
+                </th>
+                <th style="text-align: right;">
+                    % Lost
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (item.User.DisplayName)
+                        {
+                            @Html.DisplayFor(modelItem => item.User.UserName)
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.User.Id) 
+                        }
+                    </td>
+                    <td style="text-align: right;">
+                        @Html.DisplayFor(modelItem => item.PercentLost)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
 </div>

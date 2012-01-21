@@ -15,7 +15,7 @@
     @Html.ValidationMessageFor(model => model.Title)
     
     @Html.LabelFor(model => model.PostContent)
-    @Html.TextAreaFor(model => model.PostContent)
+    @Html.TextAreaFor(model => model.PostContent, new { @class = "xxlarge" })
     @Html.ValidationMessageFor(model => model.PostContent)
     
     <div class="actions">

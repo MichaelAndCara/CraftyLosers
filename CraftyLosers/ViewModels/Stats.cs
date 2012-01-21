@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel;
+using CraftyLosers.Models;
 
 namespace CraftyLosers.ViewModels
 {
     public class Stats
     {
+        public Stats(User user)
+        {
+            StartingWeight = Convert.ToDecimal(user.StartWeight);
+            GoalWeight = Convert.ToDecimal(user.GoalWeight);
+            CurrentWeight = user.WeightCheckIns.OrderByDescending(e => e.CheckInDate).ToList()[0].Weight;
+            User = user;
+        }
+
+        public User User { get; private set; }
+
         [DisplayName("Total days left of the competition")]
         public int DaysLeft { get { return (new DateTime(2012, 4, 27) - DateTime.Today).Days; } }
 

@@ -77,10 +77,10 @@ namespace CraftyLosers.Controllers
             var user = db.Users.Include("WeightCheckIns").Where(e => e.UserName == HttpContext.User.Identity.Name).FirstOrDefault();
             if (user.WeightCheckIns.Count > 0 && Convert.ToDecimal(user.GoalWeight) > 80)
             {
-                var stats = new Stats();
-                stats.StartingWeight = Convert.ToDecimal(user.StartWeight);
-                stats.GoalWeight = Convert.ToDecimal(user.GoalWeight);
-                stats.CurrentWeight = user.WeightCheckIns.OrderByDescending(e => e.CheckInDate).ToList()[0].Weight;
+                var stats = new Stats(user);
+                //stats.StartingWeight = Convert.ToDecimal(user.StartWeight);
+                //stats.GoalWeight = Convert.ToDecimal(user.GoalWeight);
+                //stats.CurrentWeight = user.WeightCheckIns.OrderByDescending(e => e.CheckInDate).ToList()[0].Weight;
                 return View(stats);
             }
             else

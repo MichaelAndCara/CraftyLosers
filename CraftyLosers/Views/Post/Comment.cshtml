@@ -17,7 +17,7 @@
     @Html.DisplayFor(model => model.Post.PostContent)
     
     @Html.LabelFor(model => model.CommentContent)
-    @Html.TextAreaFor(model => model.CommentContent)
+    @Html.TextAreaFor(model => model.CommentContent, new { @class="xxlarge" })
     @Html.ValidationMessageFor(model => model.CommentContent)
     
     <div class="actions">
