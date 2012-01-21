@@ -245,46 +245,48 @@ namespace CraftyLosers.Util
             }
         }
 
+       
+    }
+
+    /// <summary>
+    /// Provides calculations that are needed to build a Pager.
+    /// </summary>
+    public static class PageCalculator
+    {
         /// <summary>
-        /// Provides calculations that are needed to build a Pager.
+        /// Calculates the total number of pages based on the total number of items and the items per page allowed.
         /// </summary>
-        public static class PageCalculator
+        /// <param name="total">The total number of items.</param>
+        /// <param name="itemPerPage">The items per page allowed.</param>
+        /// <returns></returns>
+        public static int TotalPages(int total, int itemPerPage)
         {
-            /// <summary>
-            /// Calculates the total number of pages based on the total number of items and the items per page allowed.
-            /// </summary>
-            /// <param name="total">The total number of items.</param>
-            /// <param name="itemPerPage">The items per page allowed.</param>
-            /// <returns></returns>
-            public static int TotalPages(int total, int itemPerPage)
+            if ((total == 0) || (itemPerPage == 0))
             {
-                if ((total == 0) || (itemPerPage == 0))
-                {
-                    return 1;
-                }
-
-                if ((total % itemPerPage) == 0)
-                {
-                    return total / itemPerPage;
-                }
-
-                double result = Convert.ToDouble(total / itemPerPage);
-
-                result = Math.Ceiling(result);
-
-                return Convert.ToInt32(result) + 1;
+                return 1;
             }
 
-            /// <summary>
-            /// Calculates a start index based on the provided page number and the items per page allowed.
-            /// </summary>
-            /// <param name="page">The current page number.</param>
-            /// <param name="itemPerPage">The items per page allowed.</param>
-            /// <returns></returns>
-            public static int StartIndex(int? page, int itemPerPage)
+            if ((total % itemPerPage) == 0)
             {
-                return (page.HasValue && (page.Value > 1)) ? ((page.Value - 1) * itemPerPage) : 0;
+                return total / itemPerPage;
             }
+
+            double result = Convert.ToDouble(total / itemPerPage);
+
+            result = Math.Ceiling(result);
+
+            return Convert.ToInt32(result) + 1;
+        }
+
+        /// <summary>
+        /// Calculates a start index based on the provided page number and the items per page allowed.
+        /// </summary>
+        /// <param name="page">The current page number.</param>
+        /// <param name="itemPerPage">The items per page allowed.</param>
+        /// <returns></returns>
+        public static int StartIndex(int? page, int itemPerPage)
+        {
+            return (page.HasValue && (page.Value > 1)) ? ((page.Value - 1) * itemPerPage) : 0;
         }
     }
 }

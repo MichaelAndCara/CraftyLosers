@@ -1,0 +1,36 @@
+﻿@model CraftyLosers.Models.WeightCheckIn
+
+@{
+    ViewBag.Title = "eeeee";
+}
+
+<h2>eeeee</h2>
+
+@using (Html.BeginForm("actionName","controllerName", FormMethod.Post, new { @class="form-stacked" })) {
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Id)
+
+    @Html.LabelFor(model => model.UserId)
+    @Html.EditorFor(model => model.UserId)
+    @Html.ValidationMessageFor(model => model.UserId)
+
+    @Html.LabelFor(model => model.CheckInDate)
+    @Html.EditorFor(model => model.CheckInDate)
+    @Html.ValidationMessageFor(model => model.CheckInDate)
+
+    @Html.LabelFor(model => model.Weight)
+    @Html.EditorFor(model => model.Weight)
+    @Html.ValidationMessageFor(model => model.Weight)
+
+    <div class="actions">
+        <input type="submit" value="Save" class="btn primary" />
+		@Html.ActionLink("Cancel", "actionName", "controllerName", null, new { @class="btn secondary" })
+    </div>
+}
+
+@section javascript
+{
+    <script src="http://qaweb/cdn/scripts/jqueryvalidate/1.9.0/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="http://qaweb/cdn/scripts/mvc/3.0/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+}
+

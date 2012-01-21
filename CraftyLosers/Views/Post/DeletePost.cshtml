@@ -8,19 +8,15 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div class="form-stacked">
-    <div class="display-label">Title</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Title)
-    </div>
+    @Html.LabelFor(model => model.Title)
+    @Html.DisplayFor(model => model.Title)
 
-    <div class="display-label">Post</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PostContent)
-    </div>
+    @Html.LabelFor(model => model.PostContent)
+    @Html.DisplayFor(model => model.PostContent)
 </div>
 @using (Html.BeginForm("DeletePost", "Post", FormMethod.Post, new { @class = "form-stacked" }))
 {
-    <div>
+    <div class="actions">
         <input type="submit" value="Delete" class="btn primary" /> 
         @Html.ActionLink("Cancel", "Posts", "Post", null, new { @class = "btn secondary" })
     </div>

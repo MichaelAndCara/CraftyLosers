@@ -5,50 +5,31 @@
 }
 
 <h2>Stats</h2>
-@Html.ValidationSummary(true)
-<div>
-    <div class="display-label">DaysLeft</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.DaysLeft)
-    </div>
-
-    <div class="display-label">WeeksLeft</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.WeeksLeft)
-    </div>
-
-    <div class="display-label">StartingWeight</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.StartingWeight)
-    </div>
-
-    <div class="display-label">GoalWeight</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.GoalWeight)
-    </div>
-
-    <div class="display-label">CurrentWeight</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CurrentWeight)
-    </div>
-
-    <div class="display-label">PercentLost</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PercentLost)
-    </div>
-
-    <div class="display-label">WeightLeft</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.WeightLeft)
-    </div>
-
-    <div class="display-label">PoundsLost</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PoundsLost)
-    </div>
-
-    <div class="display-label">lbs/wk for Goal</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PerWeek)
-    </div>
+<div class="form-stacked">        
+    @Html.LabelFor(model => model.DaysLeft)
+    @Html.DisplayFor(model => model.DaysLeft)
+    
+    @Html.LabelFor(model => model.WeeksLeft)
+    @Html.DisplayFor(model => model.WeeksLeft)
+    
+    @Html.LabelFor(model => model.StartingWeight)
+    @Html.DisplayFor(model => model.StartingWeight)
+    
+    @Html.LabelFor(model => model.GoalWeight)
+    @Html.DisplayFor(model => model.GoalWeight)
+    
+    @Html.LabelFor(model => model.CurrentWeight)
+    @Html.DisplayFor(model => model.CurrentWeight)
+    
+    @Html.LabelFor(model => model.PercentLost)
+    @Html.DisplayFor(model => model.PercentLost)
+    
+    @Html.LabelFor(model => model.WeightLeft)
+    @Html.DisplayFor(model => model.WeightLeft)
+    
+    @Html.LabelFor(model => model.PoundsLost)
+    @Html.DisplayFor(model => model.PoundsLost)
+    
+    @Html.LabelFor(model => model.PerWeek)
+    @Html.DisplayFor(model => model.PerWeek)
 </div>

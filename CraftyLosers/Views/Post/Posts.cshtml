@@ -1,5 +1,5 @@
-﻿@model IEnumerable<CraftyLosers.Models.Post>
-
+﻿@model CraftyLosers.Util.PagedList<CraftyLosers.Models.Post>
+@using CraftyLosers.Util;
 @{
     ViewBag.Title = "Posts";
 }
@@ -10,7 +10,7 @@
     @Html.ActionLink("Add Post", "Post", "Post", null, new { @class = "btn primary" })
 </div>
 <table>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Items)
     {
         <tr>
             <td style="border-bottom: 2px solid Navy; border-top: 2px solid Navy;">
@@ -43,3 +43,5 @@
         </tr>
     }
 </table>
+@Html.BootstrapPager(Model,10,2)
+

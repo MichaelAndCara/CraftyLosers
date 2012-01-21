@@ -7,66 +7,50 @@
 @using (Html.BeginForm("Account", "Account", FormMethod.Post, new { @class = "form-stacked" }))
 {
     @Html.ValidationSummary(true)
-    <div>
-        @Html.HiddenFor(model => model.Id)
-        @Html.HiddenFor(model => model.UserName)
-        @Html.HiddenFor(model => model.StartWeight)
-        @Html.HiddenFor(model => model.EndWeight)
-        @Html.HiddenFor(model => model.Active)
-        @Html.HiddenFor(model => model.PW)
-        @Html.HiddenFor(model => model.SignUpDateTime)
-        @Html.HiddenFor(model => model.Admin)
-        @Html.HiddenFor(model => model.Paid)
-        <div class="display-label">
-            User Id</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Id)
-        </div>
-        <div class="display-label">
-            User Name</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.UserName)
-        </div>
-        <div class="display-label">
-            Start Weight</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.StartWeight)
-        </div>
-        <div class="display-label">
-            End Weight</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.EndWeight)
-        </div>
-        <hr />
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Email)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Email)
-            @Html.ValidationMessageFor(model => model.Email)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.GoalWeight)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.GoalWeight)
-            @Html.ValidationMessageFor(model => model.GoalWeight)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.DisplayName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.DisplayName) <span class="label notice">(Uncheck if you want to be more anonymous.)</span>
-            @Html.ValidationMessageFor(model => model.DisplayName)            
-        </div>
-        <div class="actions">
-            <input type="submit" value="Save" class="btn primary" />
-            @Html.ActionLink("Change Password", "ChangePassword", "Account", null, new { @class="btn secondary" })
-            @if (Model.Admin)
-            {
-                @Html.ActionLink("Admin Weights", "AdminWeights", "Account", null, new { @class="btn secondary" })
-            }
-        </div>
+
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.UserName)
+    @Html.HiddenFor(model => model.StartWeight)
+    @Html.HiddenFor(model => model.EndWeight)
+    @Html.HiddenFor(model => model.Active)
+    @Html.HiddenFor(model => model.PW)
+    @Html.HiddenFor(model => model.SignUpDateTime)
+    @Html.HiddenFor(model => model.Admin)
+    @Html.HiddenFor(model => model.Paid)
+    
+    @Html.LabelFor(model => model.Id)
+    @Html.DisplayFor(model => model.Id)
+    
+    @Html.LabelFor(model => model.UserName)
+    @Html.DisplayFor(model => model.UserName)
+    
+    @Html.LabelFor(model => model.StartWeight)
+    @Html.DisplayFor(model => model.StartWeight)
+    
+    @Html.LabelFor(model => model.EndWeight)
+    @Html.DisplayFor(model => model.EndWeight)
+    
+    <hr />
+    
+    @Html.LabelFor(model => model.Email)
+    @Html.EditorFor(model => model.Email)
+    @Html.ValidationMessageFor(model => model.Email)
+    
+    @Html.LabelFor(model => model.GoalWeight)
+    @Html.EditorFor(model => model.GoalWeight)
+    @Html.ValidationMessageFor(model => model.GoalWeight)
+    
+    @Html.LabelFor(model => model.DisplayName)
+    @Html.EditorFor(model => model.DisplayName) <span class="label notice">(Uncheck if you want to be more anonymous.)</span>
+    @Html.ValidationMessageFor(model => model.DisplayName)            
+    
+    <div class="actions">
+        <input type="submit" value="Save" class="btn primary" />
+        @Html.ActionLink("Change Password", "ChangePassword", "Account", null, new { @class = "btn secondary" })
+        @if (Model.Admin)
+        {
+            @Html.ActionLink("Admin Weights", "AdminWeights", "Account", null, new { @class = "btn secondary" })
+        }
     </div>
 }
 

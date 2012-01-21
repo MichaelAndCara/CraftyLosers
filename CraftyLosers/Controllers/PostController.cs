@@ -11,12 +11,23 @@ namespace CraftyLosers.Controllers
     [Authorize]
     public class PostController : Controller
     {
+        private readonly int ItemsPerPage = 10;
+
         CraftyContext db = new CraftyContext();
 
-        public ActionResult Posts()
+        public ActionResult Posts(int? page = 1)
         {
-            var data = db.Posts.Include("User").Include("Comments.User").OrderByDescending(e => e.DateCreated);
-            return View(data);
+            int startIndex = CraftyLosers.Util.PageCalculator.StartIndex(page, ItemsPerPage);
+
+            var data = db.Posts.Include("User").Include("Comments.User").OrderByDescending(e => e.DateCreated).ToList();
+
+            int total = data.Count();
+            int totalLeft = total - startIndex;
+
+            if (totalLeft < ItemsPerPage)
+                return View(new CraftyLosers.Util.PagedList<Post>(data.GetRange(startIndex, totalLeft), page.Value, ItemsPerPage, total));
+            else
+                return View(new CraftyLosers.Util.PagedList<Post>(data.GetRange(startIndex, ItemsPerPage), page.Value, ItemsPerPage, total));
         }
 
         public ActionResult Post()
