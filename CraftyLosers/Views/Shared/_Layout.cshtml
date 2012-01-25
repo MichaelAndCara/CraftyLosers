@@ -5,7 +5,7 @@
     <title>@ViewBag.Title</title>
     <link href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css" rel="stylesheet"
         type="text/css" />
-    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    @*<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />*@
     <link href="@Url.Content("~/Content/themes/redmond/jquery-ui-1.8.17.custom.css")" rel="stylesheet" type="text/css" />
     <style type="text/css">
         html, body
@@ -47,6 +47,16 @@
         .topbar
         {
             border-bottom: 3px solid #0099FF;
+        }
+        
+        .rpg_topbar
+        {
+            margin-bottom:20px;
+        }
+        .rpg_topbar a 
+        {
+            color: #BFBFBF;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
         }
         /* Styles for validation helpers
 -----------------------------------------------------------*/
@@ -135,7 +145,15 @@
                         </ul>
                     </li>
                     <li>@Html.ActionLink("Posts", "Posts", "Post")</li>
-                    <li><a href=#>CL-RPG</a></li>
+                    <li>@Html.ActionLink("CL-RPG","About", "RPG")</li>
+                    @*<li class="dropdown" data-dropdown="dropdown"><a href="#" class="dropdown-toggle">CL-RPG</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Index","Index", "RPG")</li>
+                            <li>@Html.ActionLink("About","About", "RPG")</li>
+                            <li>@Html.ActionLink("Profile","Profile", "RPG")</li>
+                            <li>@Html.ActionLink("About","About", "RPG")</li>
+                        </ul>
+                    </li>   *@                 
                 </ul>
                 <ul class="nav secondary-nav">
                     <li><strong>@(HttpContext.Current.User.Identity.IsAuthenticated ? Html.ActionLink("Logout " + HttpContext.Current.User.Identity.Name, "LogOff", "Account") : Html.ActionLink("Login", "LogOn", "Account"))</strong></li>

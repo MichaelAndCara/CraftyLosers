@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using CraftyLosers.Models;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace CraftyLosers.Repositories
 {
@@ -21,5 +22,7 @@ namespace CraftyLosers.Repositories
         public DbSet<WeightCheckIn> WeightCheckIns { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<WorkoutRef> WorkoutRefs { get; set; }
+        public DbSet<WorkoutLog> WorkoutLogs { get; set; }
     }
 }

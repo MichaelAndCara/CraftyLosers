@@ -1,0 +1,57 @@
+﻿@model CraftyLosers.Models.WorkoutLog
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@Html.Partial("_RpgNav")
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("EditLog", "RPG", FormMethod.Post, new { @class = "form-stacked" }))
+{
+	@Html.ValidationSummary(true)
+	@Html.HiddenFor(model => model.Id)
+	@Html.HiddenFor(model => model.UserId)
+	@Html.HiddenFor(model => model.WorkoutRefId)    
+	@Html.HiddenFor(model => model.Calories)
+	
+    @Html.LabelFor(model => model.WorkoutRef.Description)
+	@Html.DisplayFor(model => model.WorkoutRef.Description)
+    
+	@Html.LabelFor(model => model.Calories)
+	@Html.DisplayFor(model => model.Calories)
+
+    <hr />
+    
+    @Html.LabelFor(model => model.WorkoutDate)
+	@Html.EditorFor(model => model.WorkoutDate)
+	@Html.ValidationMessageFor(model => model.WorkoutDate)
+
+	@Html.LabelFor(model => model.Qty)
+	@Html.EditorFor(model => model.Qty)
+	@Html.ValidationMessageFor(model => model.Qty)
+
+    <div class="actions">
+		<input type="submit" value="Save" class="btn primary" />
+		@Html.ActionLink("Cancel", "WorkoutLog", "RPG", null, new { @class = "btn secondary" })
+	</div>
+}
+
+@section javascript
+{
+	<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+	<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("#WorkoutDate").datepicker(
+            {
+                minDate: new Date("1/24/2012"),
+                maxDate: new Date("4/26/2012")
+            });
+
+                $("#WorkoutDate").attr('readonly', true);
+            });
+	</script>
+}
+

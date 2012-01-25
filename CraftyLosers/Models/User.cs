@@ -61,6 +61,7 @@ namespace CraftyLosers.Models
 
         public ICollection<WeightCheckIn> WeightCheckIns { get; set; }
         public ICollection<Post> Posts { get; set; }
+        public ICollection<WorkoutLog> WorkoutLogs { get; set; }
     }
 
     public interface IFormsAuthenticationService

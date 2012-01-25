@@ -33,6 +33,9 @@ namespace CraftyLosers
         {
             AreaRegistration.RegisterAllAreas();
 
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
+
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }

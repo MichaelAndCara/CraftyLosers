@@ -16,7 +16,7 @@
     @Html.HiddenFor(model => model.UserId)
     
     @Html.LabelFor(model => model.CommentContent)
-    @Html.TextAreaFor(model => model.CommentContent)
+    @Html.TextAreaFor(model => model.CommentContent, new { @class = "xxlarge" })
     @Html.ValidationMessageFor(model => model.CommentContent)
     <div class="actions">
         <input type="submit" value="Save" class="btn primary" />

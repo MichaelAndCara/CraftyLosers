@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CraftyLosers.Models.WorkoutLog>
+
+@{
+    ViewBag.Title = "WorkoutLog";
+}
+
+@Html.Partial("_RpgNav")
+
+<h2>WorkoutLog</h2>
+
+<div class="actions form-stacked">
+    @Html.ActionLink("Log", "Log", "RPG", null, new { @class="btn primary" })
+</div>
+<table>
+    <tr>
+        <th>
+            Workout
+        </th>
+        <th>
+            Rep/Duration
+        </th>
+        <th>
+            Calories
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       <td>
+            @Html.DisplayFor(modelItem => item.WorkoutRef.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Qty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Calories)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditLog", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "DeleteLog", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

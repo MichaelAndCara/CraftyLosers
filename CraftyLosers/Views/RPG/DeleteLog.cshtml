@@ -1,0 +1,32 @@
+﻿@model CraftyLosers.Models.WorkoutLog
+
+@{
+    ViewBag.Title = "Delete Log";
+}
+
+@Html.Partial("_RpgNav")
+
+<h3>Are you sure you want to delete this?</h3>
+<div class="form-stacked">
+    
+    @Html.HiddenFor(model => model.UserId)
+    @Html.HiddenFor(model => model.WorkoutRefId)
+
+    @Html.LabelFor(model => model.WorkoutRef.Description)
+    @Html.DisplayFor(model => model.WorkoutRef.Description)
+
+    @Html.LabelFor(model => model.WorkoutDate)
+    @Html.DisplayFor(model => model.WorkoutDate)
+
+    @Html.LabelFor(model => model.Qty)
+    @Html.DisplayFor(model => model.Qty)
+
+    @Html.LabelFor(model => model.Calories)
+    @Html.DisplayFor(model => model.Calories)
+</div>
+@using (Html.BeginForm("DeleteLog","RPG", FormMethod.Post, new { @class="form-stacked" })) {
+    <div class="actions">
+        <input type="submit" value="Delete" class="btn primary" />
+        @Html.ActionLink("Cancel", "WorkoutLog", "RPG", null, new { @class="btn secondary" })
+    </div>
+}

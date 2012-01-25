@@ -1,0 +1,44 @@
+﻿@model CraftyLosers.Models.Profile
+
+@{
+	ViewBag.Title = "Profile";
+}
+
+@Html.Partial("_RpgNav")
+
+<h2>Profile</h2>
+
+<div class="form-stacked">
+	
+	@Html.LabelFor(model => model.User.UserName)
+	@Html.DisplayFor(model => model.User.UserName)
+
+	@Html.LabelFor(model => model.Level)
+	<div id="progressbar" class="span4">
+		<span style="position:absolute; margin-left:10px; margin-top:2px; padding-top:3px;">@ViewBag.PGText</span>
+	</div>
+
+	@Html.LabelFor(model => model.Points)
+	@Html.DisplayFor(model => model.Points)
+
+	@Html.LabelFor(model => model.Achievements)
+	@Html.DisplayFor(model => model.Achievements)
+
+	@Html.LabelFor(model => model.Quests)
+	@Html.DisplayFor(model => model.Quests)
+</div>
+
+@section javascript
+{
+	<script type="text/javascript">
+		$(function () {
+			$.get('/RPG/GetLevel', function(data){
+					$("#progressbar").progressbar({
+						value: data
+					});
+				})
+		});
+	</script>
+}
+
+

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CraftyLosers.Models.Profile>
+
+@{
+    ViewBag.Title = "Leaderboard";
+}
+
+@Html.Partial("_RpgNav")
+
+<h2>Leaderboard</h2>
+
+<table>
+    <tr>
+        <th>
+            User
+        </th>
+        <th style="text-align: right;">
+            Level
+        </th>
+        <th style="text-align: right;">
+            Points
+        </th>
+        <th style="text-align: right;">
+            Achievements
+        </th>
+        <th style="text-align: right;">
+            Quests Completed
+        </th>
+@*        <th></th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @if (item.User.DisplayName)
+            {
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.User.Id) 
+            }
+        </td>
+        <td style="text-align: right;">
+            @Html.DisplayFor(modelItem => item.Level)
+        </td>
+        <td style="text-align: right;">
+            @Html.DisplayFor(modelItem => item.Points)
+        </td>
+        <td style="text-align: right;">
+            @Html.DisplayFor(modelItem => item.Achievements)
+        </td>
+        <td style="text-align: right;">
+            @Html.DisplayFor(modelItem => item.Quests)
+        </td>
+@*        <td>
+            @Html.ActionLink("View", "Profile", new { id=item.User.Id })            
+        </td>*@
+    </tr>
+}
+
+</table>
