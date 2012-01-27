@@ -16,10 +16,13 @@
         <th>
             Workout
         </th>
-        <th>
+        <th style="text-align: right;">
+            Workout Date
+        </th>
+        <th style="text-align: right;">
             Rep/Duration
         </th>
-        <th>
+        <th style="text-align: right;">
             Calories
         </th>
         <th></th>
@@ -30,13 +33,16 @@
        <td>
             @Html.DisplayFor(modelItem => item.WorkoutRef.Description)
         </td>
-        <td>
+        <td style="text-align: right;">
+            @Html.DisplayFor(modelItem => item.WorkoutDate)
+        </td>
+        <td style="text-align: right;">
             @Html.DisplayFor(modelItem => item.Qty)
         </td>
-        <td>
+        <td style="text-align: right;">
             @Html.DisplayFor(modelItem => item.Calories)
         </td>
-        <td>
+        <td style="text-align: right;">
             @Html.ActionLink("Edit", "EditLog", new { id=item.Id }) |
             @Html.ActionLink("Delete", "DeleteLog", new { id=item.Id })
         </td>

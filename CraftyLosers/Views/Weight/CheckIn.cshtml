@@ -31,10 +31,12 @@
             $("#CheckInDate").datepicker(
             {
                 minDate: new Date("1/17/2012"),
-                maxDate: new Date("4/26/2012")
+                maxDate: new Date("4/26/2012")                
             });
 
             $("#CheckInDate").attr('readonly', true);
+
+            $("#CheckInDate").datepicker('setDate', new Date());
         });
 	</script>
 }
