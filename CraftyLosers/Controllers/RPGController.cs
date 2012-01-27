@@ -72,7 +72,7 @@ namespace CraftyLosers.Controllers
                 var workoutLog = new WorkoutLog();
                 workoutLog.Qty = workout.Duration.Value;
                 workoutLog.UserId = user.Id;
-                workoutLog.WorkoutDate = DateTime.Now;
+                workoutLog.WorkoutDate = Convert.ToDateTime(workout.WorkoutDate);
                 workoutLog.WorkoutRefId = workoutRef.Id;
                 workoutLog.Calories = workoutRef.Calories * workout.Duration.Value;
 
@@ -87,7 +87,7 @@ namespace CraftyLosers.Controllers
                 var workoutLog = new WorkoutLog();
                 workoutLog.Qty = workout.Rep.Value;
                 workoutLog.UserId = user.Id;
-                workoutLog.WorkoutDate = DateTime.Now;
+                workoutLog.WorkoutDate = Convert.ToDateTime(workout.WorkoutDate);
                 workoutLog.WorkoutRefId = workoutRef.Id;
                 workoutLog.Calories = workoutRef.Calories * workout.Rep.Value;
 
