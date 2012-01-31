@@ -13,6 +13,8 @@ namespace CraftyLosers.Controllers
     [Authorize]
     public class RPGController : Controller
     {
+        private readonly int ItemsPerPage = 10;
+
         CraftyContext db = new CraftyContext();
 
         public ActionResult Index()
@@ -22,11 +24,21 @@ namespace CraftyLosers.Controllers
 
         public ActionResult Profile()
         {
-            var user = db.Users.Include("WorkoutLogs").Where(e => e.UserName == HttpContext.User.Identity.Name).FirstOrDefault();
+            var user = db.Users.Include("WorkoutLogs.WorkoutRef").Where(e => e.UserName == HttpContext.User.Identity.Name).FirstOrDefault();
 
             decimal points = user.WorkoutLogs.Sum(e => e.Calories);
 
             var profile = new Profile(user, points);
+
+            foreach (var achievement in db.Achievements)
+            {
+                var likeLogs = user.WorkoutLogs.Where(e => e.WorkoutRefId == achievement.WorkoutRefId);
+
+                if (likeLogs.Sum(e => e.Qty) >= achievement.Qty)
+                {
+                    profile.Achievements.Add(achievement);
+                }
+            }
 
             ViewBag.PGText = "Level " + profile.Level.ToString() + " - " + profile.LevelPoints.ToString() + "/" + (profile.Level * 100).ToString();
 
@@ -48,11 +60,21 @@ namespace CraftyLosers.Controllers
             return Json(y, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult WorkoutLog()
+        public ActionResult WorkoutLog(int? page = 1)
         {
+            int startIndex = CraftyLosers.Util.PageCalculator.StartIndex(page, ItemsPerPage);
+
             var user = db.Users.Where(e => e.UserName == HttpContext.User.Identity.Name).FirstOrDefault();
 
-            return View(db.WorkoutLogs.Include("WorkoutRef").Where(e => e.UserId == user.Id).OrderByDescending(e => e.WorkoutDate).ThenByDescending(e => e.Id));
+            var logs = db.WorkoutLogs.Include("WorkoutRef").Where(e => e.UserId == user.Id).OrderByDescending(e => e.WorkoutDate).ThenByDescending(e => e.Id).ToList();
+
+            int total = logs.Count();
+            int totalLeft = total - startIndex;
+
+            if (totalLeft < ItemsPerPage)
+                return View(new CraftyLosers.Util.PagedList<WorkoutLog>(logs.GetRange(startIndex, totalLeft), page.Value, ItemsPerPage, total));
+            else
+                return View(new CraftyLosers.Util.PagedList<WorkoutLog>(logs.GetRange(startIndex, ItemsPerPage), page.Value, ItemsPerPage, total));
         }
 
         public ActionResult Log()

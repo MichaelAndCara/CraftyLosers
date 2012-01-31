@@ -12,13 +12,25 @@ namespace CraftyLosers.Controllers
     [Authorize]
     public class WeightController : Controller
     {
+        private readonly int ItemsPerPage = 10;
+
         CraftyContext db = new CraftyContext();
 
-        public ActionResult WeightCheckIns()
+        public ActionResult WeightCheckIns(int? page = 1)
         {
+            int startIndex = CraftyLosers.Util.PageCalculator.StartIndex(page, ItemsPerPage);
+
             var user = db.Users.Where(e => e.UserName == HttpContext.User.Identity.Name).FirstOrDefault();
 
-            return View(db.WeightCheckIns.Where(e => e.UserId == user.Id));
+            var checkIns = db.WeightCheckIns.Where(e => e.UserId == user.Id).ToList();
+
+            int total = checkIns.Count();
+            int totalLeft = total - startIndex;
+
+            if (totalLeft < ItemsPerPage)
+                return View(new CraftyLosers.Util.PagedList<WeightCheckIn>(checkIns.GetRange(startIndex, totalLeft), page.Value, ItemsPerPage, total));
+            else
+                return View(new CraftyLosers.Util.PagedList<WeightCheckIn>(checkIns.GetRange(startIndex, ItemsPerPage), page.Value, ItemsPerPage, total));
         }
 
         public ActionResult CheckIn()

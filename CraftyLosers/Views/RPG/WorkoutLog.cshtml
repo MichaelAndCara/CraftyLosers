@@ -1,5 +1,5 @@
-﻿@model IEnumerable<CraftyLosers.Models.WorkoutLog>
-
+﻿@model CraftyLosers.Util.PagedList<CraftyLosers.Models.WorkoutLog>
+@using CraftyLosers.Util;
 @{
     ViewBag.Title = "WorkoutLog";
 }
@@ -9,7 +9,7 @@
 <h2>WorkoutLog</h2>
 
 <div class="actions form-stacked">
-    @Html.ActionLink("Log", "Log", "RPG", null, new { @class="btn primary" })
+    @Html.ActionLink("Log", "Log", "RPG", null, new { @class = "btn primary" })
 </div>
 <table>
     <tr>
@@ -28,7 +28,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Items)
+{
     <tr>
        <td>
             @Html.DisplayFor(modelItem => item.WorkoutRef.Description)
@@ -43,10 +44,10 @@
             @Html.DisplayFor(modelItem => item.Calories)
         </td>
         <td style="text-align: right;">
-            @Html.ActionLink("Edit", "EditLog", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "DeleteLog", new { id=item.Id })
+            @Html.ActionLink("Edit", "EditLog", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "DeleteLog", new { id = item.Id })
         </td>
     </tr>
 }
-
 </table>
+@Html.BootstrapPager(Model,10,2)

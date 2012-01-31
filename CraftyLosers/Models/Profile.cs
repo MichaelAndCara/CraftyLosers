@@ -25,6 +25,8 @@ namespace CraftyLosers.Models
                 LevelFactor += .5M;
                 LevelMax = Convert.ToInt32(LevelFactor * LevelCap);
             }
+
+            Achievements = new List<Achievement>();
         }
 
         public User User { get; set; }
@@ -35,7 +37,7 @@ namespace CraftyLosers.Models
         public int Points { get; set; }
 
         [DisplayName("Achievements Unlocked")]
-        public int Achievements { get; set; }
+        public ICollection<Achievement> Achievements { get; set; }
 
         [DisplayName("Quests Completed")]
         public int Quests { get; set; }

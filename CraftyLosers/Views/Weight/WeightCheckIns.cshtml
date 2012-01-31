@@ -1,5 +1,5 @@
-﻿@model IEnumerable<CraftyLosers.Models.WeightCheckIn>
-
+﻿@model CraftyLosers.Util.PagedList<CraftyLosers.Models.WeightCheckIn>
+@using CraftyLosers.Util;
 @{
     ViewBag.Title = "Weight CheckIns";
 }
@@ -21,7 +21,7 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Items) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.CheckInDate)
@@ -37,3 +37,4 @@
 }
 
 </table>
+@Html.BootstrapPager(Model,10,2)

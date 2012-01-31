@@ -24,5 +24,6 @@ namespace CraftyLosers.Repositories
         public DbSet<Comment> Comments { get; set; }
         public DbSet<WorkoutRef> WorkoutRefs { get; set; }
         public DbSet<WorkoutLog> WorkoutLogs { get; set; }
+        public DbSet<Achievement> Achievements { get; set; }
     }
 }
