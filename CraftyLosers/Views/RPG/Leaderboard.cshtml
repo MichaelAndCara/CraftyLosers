@@ -30,26 +30,26 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        <td style="width:20%;">
             @if (item.User.DisplayName)
             {
-                @Html.DisplayFor(modelItem => item.User.UserName)
+                @Html.ActionLink(item.User.UserName, "ViewProfile", new { id = item.User.Id })
             }
             else
             {
-                @Html.DisplayFor(modelItem => item.User.Id) 
+                @Html.ActionLink(item.User.Id.ToString(), "ViewProfile", new { id = item.User.Id })
             }
         </td>
-        <td style="text-align: right;">
+        <td style="text-align: right; width:20%;">
             @Html.DisplayFor(modelItem => item.Level)
         </td>
-        <td style="text-align: right;">
+        <td style="text-align: right; width:20%;">
             @Html.DisplayFor(modelItem => item.Points)
         </td>
-        <td style="text-align: right;">
-            @Html.DisplayFor(modelItem => item.Achievements)
+        <td style="text-align: right; width:20%;">
+            @Html.DisplayFor(modelItem => item.Achievements.Count)
         </td>
-        <td style="text-align: right;">
+        <td style="text-align: right; width:20%;">
             @Html.DisplayFor(modelItem => item.Quests)
         </td>
 @*        <td>

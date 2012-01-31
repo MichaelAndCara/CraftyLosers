@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel;
+using CraftyLosers.Repositories;
 
 namespace CraftyLosers.Models
 {
     public class Profile
     {
+        CraftyContext db = new CraftyContext();
+
         public Profile(User user, decimal calories)
         {
             User = user;
@@ -27,6 +30,16 @@ namespace CraftyLosers.Models
             }
 
             Achievements = new List<Achievement>();
+
+            foreach (var achievement in db.Achievements)
+            {
+                var likeLogs = user.WorkoutLogs.Where(e => e.WorkoutRefId == achievement.WorkoutRefId);
+
+                if (likeLogs.Sum(e => e.Qty) >= achievement.Qty)
+                {
+                    Achievements.Add(achievement);
+                }
+            }
         }
 
         public User User { get; set; }

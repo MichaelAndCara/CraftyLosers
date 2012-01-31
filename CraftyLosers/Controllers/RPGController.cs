@@ -30,24 +30,27 @@ namespace CraftyLosers.Controllers
 
             var profile = new Profile(user, points);
 
-            foreach (var achievement in db.Achievements)
-            {
-                var likeLogs = user.WorkoutLogs.Where(e => e.WorkoutRefId == achievement.WorkoutRefId);
+            ViewBag.PGText = "Level " + profile.Level.ToString() + " - " + profile.LevelPoints.ToString() + "/" + (profile.Level * 100).ToString();
 
-                if (likeLogs.Sum(e => e.Qty) >= achievement.Qty)
-                {
-                    profile.Achievements.Add(achievement);
-                }
-            }
+            return View(profile);
+        }
+
+        public ActionResult ViewProfile(int id)
+        {
+            var user = db.Users.Include("WorkoutLogs.WorkoutRef").Where(e => e.Id == id).FirstOrDefault();
+
+            decimal points = user.WorkoutLogs.Sum(e => e.Calories);
+
+            var profile = new Profile(user, points);
 
             ViewBag.PGText = "Level " + profile.Level.ToString() + " - " + profile.LevelPoints.ToString() + "/" + (profile.Level * 100).ToString();
 
             return View(profile);
         }
 
-        public JsonResult GetLevel()
+        public JsonResult GetLevel(int id)
         {
-            var user = db.Users.Include("WorkoutLogs").Where(e => e.UserName == HttpContext.User.Identity.Name).FirstOrDefault();
+            var user = db.Users.Include("WorkoutLogs").Where(e => e.Id == id).FirstOrDefault();
 
             decimal points = user.WorkoutLogs.Sum(e => e.Calories);
 

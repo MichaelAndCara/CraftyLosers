@@ -1,7 +1,10 @@
 ﻿@model CraftyLosers.Models.Profile
+
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = "View Profile";
 }
+
+<h2>View Profile</h2>
 @Html.Partial("_RpgNav")
 <h2>
     Profile</h2>
@@ -9,8 +12,16 @@
     <div class="span10">
         <div class="form-stacked">
             @Html.HiddenFor(model => model.User.Id)
+
             @Html.LabelFor(model => model.User.UserName)
-            @Html.DisplayFor(model => model.User.UserName)
+            @if (Model.User.DisplayName)
+            { 
+                @Html.DisplayFor(model => model.User.UserName)
+            }
+            else
+            { 
+                @Html.DisplayFor(model => model.User.Id)
+            }
             @Html.LabelFor(model => model.Level)
             <div id="progressbar" class="span4">
                 <span style="position: absolute; margin-left: 10px; margin-top: 2px; padding-top: 3px;">@ViewBag.PGText
@@ -45,6 +56,11 @@
             }
         </div>*@
     </div>
+</div>
+<div class="form-stacked">
+    <div class="actions">
+		@Html.ActionLink("Back To Leaderboard", "Leaderboard", "RPG", null, new { @class = "btn secondary" })
+	</div>
 </div>
 @section javascript
 {
