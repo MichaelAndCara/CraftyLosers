@@ -174,6 +174,30 @@ namespace CraftyLosers.Controllers
             return View(profiles);
         }
 
+        public ActionResult Achievements()
+        {
+            var user = db.Users.Include("WorkoutLogs").Where(e => e.UserName == HttpContext.User.Identity.Name).FirstOrDefault();
+
+            var profileAchievements = new List<ProfileAchievement>();
+
+            foreach (var achievement in db.Achievements)
+            {
+                var likeLogs = user.WorkoutLogs.Where(e => e.WorkoutRefId == achievement.WorkoutRefId);
+
+                var profileAchievement = new ProfileAchievement();
+                profileAchievement.Achievement = achievement;
+
+                if (likeLogs.Sum(e => e.Qty) >= achievement.Qty)
+                {
+                    profileAchievement.Unlocked = true;
+                }
+
+                profileAchievements.Add(profileAchievement);
+            }
+
+            return View(profileAchievements);
+        }
+
         public ActionResult About()
         {
             return View();

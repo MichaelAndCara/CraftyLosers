@@ -89,6 +89,7 @@
     <Compile Include="ViewModels\ForgotUserNameOrPassword.cs" />
     <Compile Include="ViewModels\Home.cs" />
     <Compile Include="ViewModels\LogOn.cs" />
+    <Compile Include="ViewModels\ProfileAchievement.cs" />
     <Compile Include="ViewModels\Register.cs" />
     <Compile Include="ViewModels\ResetPassword.cs" />
     <Compile Include="ViewModels\Stats.cs" />
@@ -265,6 +266,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\RPG\ViewProfile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\RPG\Achievements.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

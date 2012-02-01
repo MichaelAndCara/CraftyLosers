@@ -11,8 +11,8 @@ namespace CraftyLosers.Repositories
     public class CraftyContext : DbContext
     {
         public CraftyContext()
-            : base(@"Data Source=.\sqlexpress;Initial Catalog=BigIsLoser;Persist Security Info=True;MultipleActiveResultSets=True;User ID=macdbuser;Password=cjogre77")
-            //: base(@"Data Source=localhost;Initial Catalog=BigIsLoser;Persist Security Info=True;MultipleActiveResultSets=True;User ID=macdbuser;Password=cjogre77")
+            //: base(@"Data Source=.\sqlexpress;Initial Catalog=BigIsLoser;Persist Security Info=True;MultipleActiveResultSets=True;User ID=macdbuser;Password=cjogre77")
+            : base(@"Data Source=localhost;Initial Catalog=BigIsLoser;Persist Security Info=True;MultipleActiveResultSets=True;User ID=macdbuser;Password=cjogre77")
             //: base(@"metadata=res://*/Repositories.BISL_EntityDataModel.csdl|res://*/Repositories.BISL_EntityDataModel.ssdl|res://*/Repositories.BISL_EntityDataModel.msl;provider=System.Data.SqlClient;provider connection string='Data Source=.\sqlexpress;Initial Catalog=BigIsLoser;Persist Security Info=True;MultipleActiveResultSets=True;User ID=macdbuser;Password=cjogre77'")
         {
             

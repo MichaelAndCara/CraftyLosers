@@ -1,0 +1,28 @@
+﻿@model IEnumerable<CraftyLosers.ViewModels.ProfileAchievement>
+
+@{
+    ViewBag.Title = "Achievements";
+}
+@Html.Partial("_RpgNav")
+<h2>Achievements</h2>
+
+<div>
+@foreach (var item in Model)
+{
+    if (item.Unlocked)
+    { 
+        <div style="width:100px; height:150px; float:left; margin:10px 15px 10px 15px;" class="alert-message block-message success">
+            <div style="height:40px; text-align:center; font-weight:bold; margin-bottom:20px;">@item.Achievement.Title</div>
+            <div style="height:56px; text-align:center;">@item.Achievement.Description</div>
+        </div>
+    }
+    else 
+    {
+        <div style="width:100px; height:150px; float:left; margin:10px 15px 10px 15px;" class="alert-message block-message error">
+            <div style="height:40px; text-align:center; font-weight:bold;  margin-bottom:20px;">@item.Achievement.Title</div>
+            <div style="height:56px; text-align:center;">@item.Achievement.Description</div>
+        </div> 
+    }
+}
+</div>
+<div style="clear:both;"></div>

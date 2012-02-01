@@ -4,10 +4,10 @@
     ViewBag.Title = "View Profile";
 }
 
-<h2>View Profile</h2>
 @Html.Partial("_RpgNav")
-<h2>
-    Profile</h2>
+
+<h2>View Profile</h2>
+
 <div class="row">
     <div class="span10">
         <div class="form-stacked">
@@ -43,7 +43,7 @@
                 Achievements Unlocked</h3>
             @foreach (var item in Model.Achievements)
             {
-                <span title="@item.Description" class="label important">@item.Title</span>
+                <span title="@item.Description" class="label success">@item.Title</span>
             }
         </div>
 @*        <hr />
