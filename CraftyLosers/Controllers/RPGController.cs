@@ -156,10 +156,7 @@ namespace CraftyLosers.Controllers
 
         public ActionResult Leaderboard()
         {
-            var users = db.Users.Include("WorkoutLogs").Where(e =>
-                e.WeightCheckIns.Count > 0 &&
-                e.StartWeight.Value >= 80 &&
-                e.GoalWeight.Value >= 80);
+            var users = db.Users.Include("WorkoutLogs").Where(e => e.StartWeight.Value >= 80  & e.Active == true);
 
             var profiles = new List<Profile>();
 
