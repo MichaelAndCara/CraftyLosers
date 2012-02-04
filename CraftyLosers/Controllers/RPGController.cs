@@ -186,6 +186,8 @@ namespace CraftyLosers.Controllers
 
                 var profileAchievement = new ProfileAchievement();
                 profileAchievement.Achievement = achievement;
+                var soFar = likeLogs.Sum(e => e.Qty);
+                profileAchievement.MyQty = Math.Min(likeLogs.Sum(e => e.Qty), achievement.Qty);
 
                 if (likeLogs.Sum(e => e.Qty) >= achievement.Qty)
                 {

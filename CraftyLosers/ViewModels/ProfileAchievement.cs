@@ -10,5 +10,6 @@ namespace CraftyLosers.ViewModels
     {
         public bool Unlocked { get; set; }
         public Achievement Achievement { get; set; }
+        public int MyQty { get; set; }
     }
 }
