@@ -12,4 +12,10 @@ namespace CraftyLosers.ViewModels
         public Achievement Achievement { get; set; }
         public int MyQty { get; set; }
     }
+
+    public class ProfileAchievementHeader
+    {
+        public User User { get; set; }
+        public ICollection<ProfileAchievement> ProfileAchievments { get; set; }
+    }
 }

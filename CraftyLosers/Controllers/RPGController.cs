@@ -171,15 +171,50 @@ namespace CraftyLosers.Controllers
             return View(profiles);
         }
 
-        public ActionResult Achievements()
-        {
-            var user = db.Users.Include("WorkoutLogs").Where(e => e.UserName == HttpContext.User.Identity.Name).FirstOrDefault();
+        //public ActionResult Achievements()
+        //{
+        //    var user = db.Users.Include("WorkoutLogs").Where(e => e.UserName == HttpContext.User.Identity.Name).FirstOrDefault();
 
-            var profileAchievements = new List<ProfileAchievement>();
+        //    return RedirectToAction("Achievements", new { id = user.Id });
+        //    //var profileAchievements = new List<ProfileAchievement>();
+
+        //    //foreach (var achievement in db.Achievements)
+        //    //{
+        //    //    var likeLogs = user.WorkoutLogs.Where(e => e.WorkoutRefId == achievement.WorkoutRefId);
+
+        //    //    var profileAchievement = new ProfileAchievement();
+        //    //    profileAchievement.Achievement = achievement;
+        //    //    var soFar = likeLogs.Sum(e => e.Qty);
+        //    //    profileAchievement.MyQty = Math.Min(likeLogs.Sum(e => e.Qty), achievement.Qty);
+
+        //    //    if (likeLogs.Sum(e => e.Qty) >= achievement.Qty)
+        //    //    {
+        //    //        profileAchievement.Unlocked = true;
+        //    //    }
+
+        //    //    profileAchievements.Add(profileAchievement);
+        //    //}
+
+        //    //return View(profileAchievements);
+        //}
+
+        public ActionResult Achievements(int? id)
+        {
+            var myAchievements = new ProfileAchievementHeader();
+            if (id.HasValue)
+            {
+                myAchievements.User = db.Users.Include("WorkoutLogs").Where(e => e.Id == id).FirstOrDefault();
+            }
+            else
+            {
+                myAchievements.User = db.Users.Include("WorkoutLogs").Where(e => e.UserName == HttpContext.User.Identity.Name).FirstOrDefault();
+            }
+
+            myAchievements.ProfileAchievments = new List<ProfileAchievement>();
 
             foreach (var achievement in db.Achievements)
             {
-                var likeLogs = user.WorkoutLogs.Where(e => e.WorkoutRefId == achievement.WorkoutRefId);
+                var likeLogs = myAchievements.User.WorkoutLogs.Where(e => e.WorkoutRefId == achievement.WorkoutRefId);
 
                 var profileAchievement = new ProfileAchievement();
                 profileAchievement.Achievement = achievement;
@@ -191,10 +226,10 @@ namespace CraftyLosers.Controllers
                     profileAchievement.Unlocked = true;
                 }
 
-                profileAchievements.Add(profileAchievement);
+                myAchievements.ProfileAchievments.Add(profileAchievement);
             }
 
-            return View(profileAchievements);
+            return View(myAchievements);
         }
 
         public ActionResult About()

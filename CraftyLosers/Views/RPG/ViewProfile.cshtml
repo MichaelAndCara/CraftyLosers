@@ -40,7 +40,7 @@
     <div class="span4">
         <div>
             <h3>
-                Achievements Unlocked</h3>
+                @Html.ActionLink("Achievements Unlocked", "Achievements", new { @id = Model.User.Id })</h3>
             @foreach (var item in Model.Achievements)
             {
                 <span title="@item.Description" class="label success">@item.Title</span>
