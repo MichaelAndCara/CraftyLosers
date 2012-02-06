@@ -47,7 +47,8 @@
             @Html.DisplayFor(modelItem => item.Points)
         </td>
         <td style="text-align: right; width:20%;">
-            @Html.DisplayFor(modelItem => item.Achievements.Count)
+            @*@Html.DisplayFor(modelItem => item.Achievements.Count)*@
+            @Html.ActionLink(item.Achievements.Count.ToString(), "Achievements", new { id = item.User.Id })
         </td>
         <td style="text-align: right; width:20%;">
             @Html.DisplayFor(modelItem => item.Quests)

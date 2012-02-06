@@ -34,6 +34,7 @@
             {
                 <span title="@item.Description" class="label success">@item.Title</span>
             }
+            <div>@Html.ActionLink("View All", "Achievements", new { id = Model.User.Id })</div>
         </div>
 @*        <hr />
         <div>
