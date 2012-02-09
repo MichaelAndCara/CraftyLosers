@@ -6,8 +6,8 @@
 
 <h2>Posts</h2>
 
-<div class="actions form-stacked">
-    @Html.ActionLink("Add Post", "Post", "Post", null, new { @class = "btn primary" })
+<div class="form-actions form-vertical">
+    @Html.ActionLink("Add Post", "Post", "Post", null, new { @class = "btn btn-primary" })
 </div>
 <table>
     @foreach (var item in Model.Items)

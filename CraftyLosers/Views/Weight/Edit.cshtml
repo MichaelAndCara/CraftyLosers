@@ -1,12 +1,18 @@
 ﻿@model CraftyLosers.Models.WeightCheckIn
-
+@section style
+{
+    #CheckInDate
+    {
+        cursor: default;
+    }
+}
 @{
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm("Edit", "Weight", FormMethod.Post, new { @class = "form-stacked" }))
+@using (Html.BeginForm("Edit", "Weight", FormMethod.Post))
 {
     @Html.ValidationSummary(true)
     
@@ -21,9 +27,9 @@
     @Html.EditorFor(model => model.Weight)
     @Html.ValidationMessageFor(model => model.Weight)
     
-    <div class="actions">
-        <input type="submit" value="Save" class="btn primary" /> 
-        @Html.ActionLink("Back to List", "WeightCheckIns", "Weight", new { @class="btn secondary" })
+    <div class="form-actions">
+        <input type="submit" value="Save" class="btn btn-primary" /> 
+        @Html.ActionLink("Back to List", "WeightCheckIns", "Weight", new { @class="btn" })
     </div>
 }
 

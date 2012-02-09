@@ -4,7 +4,7 @@
 }
 <h2>
     Account</h2>
-@using (Html.BeginForm("Account", "Account", FormMethod.Post, new { @class = "form-stacked" }))
+@using (Html.BeginForm("Account", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.ValidationSummary(true)
 
@@ -18,42 +18,68 @@
     @Html.HiddenFor(model => model.Admin)
     @Html.HiddenFor(model => model.Paid)
     
-    @Html.LabelFor(model => model.Id)
-    @Html.DisplayFor(model => model.Id)
-    
-    @Html.LabelFor(model => model.UserName)
-    @Html.DisplayFor(model => model.UserName)
-    
-    @Html.LabelFor(model => model.StartWeight)
-    @Html.DisplayFor(model => model.StartWeight)
-    
-    @Html.LabelFor(model => model.EndWeight)
-    @Html.DisplayFor(model => model.EndWeight)
-    
+    <div class="control-group">
+        @Html.LabelFor(model => model.Id)
+        <div class="controls">
+            @Html.TextBoxFor(model => model.Id, new { @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.UserName)
+        <div class="controls">
+            @Html.TextBoxFor(model => model.UserName, new { @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.StartWeight)
+        <div class="controls">
+            @Html.TextBoxFor(model => model.StartWeight, new { @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.EndWeight)
+        <div class="controls">
+            @Html.TextBoxFor(model => model.EndWeight, new { @readonly = "readonly" })
+        </div>
+    </div>
     <hr />
     
-    @Html.LabelFor(model => model.Email)
-    @Html.EditorFor(model => model.Email)
-    @Html.ValidationMessageFor(model => model.Email)
-    
-    @Html.LabelFor(model => model.GoalWeight)
-    @Html.EditorFor(model => model.GoalWeight)
-    @Html.ValidationMessageFor(model => model.GoalWeight)
-    
-    @Html.LabelFor(model => model.DisplayName)
-    @Html.EditorFor(model => model.DisplayName) <span class="label notice">(Uncheck if you want to be more anonymous.)</span>
-    @Html.ValidationMessageFor(model => model.DisplayName)            
-    
-    <div class="actions">
-        <input type="submit" value="Save" class="btn primary" />
-        @Html.ActionLink("Change Password", "ChangePassword", "Account", null, new { @class = "btn secondary" })
-        @if (Model.Admin)
-        {
-            @Html.ActionLink("Admin Weights", "AdminWeights", "Account", null, new { @class = "btn secondary" })
-        }
+    <div class="control-group">
+        @Html.LabelFor(model => model.Email)
+        <div class="controls">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
     </div>
-}
 
+    <div class="control-group">
+        @Html.LabelFor(model => model.GoalWeight)
+        <div class="controls">
+            @Html.EditorFor(model => model.GoalWeight)
+            @Html.ValidationMessageFor(model => model.GoalWeight)
+        </div>
+    </div>
+
+    <div class="control-group">
+        @Html.LabelFor(model => model.DisplayName)
+        <div class="controls">
+            @Html.EditorFor(model => model.DisplayName) <span class="label notice">(Uncheck if you
+                want to be more anonymous.)</span>
+            @Html.ValidationMessageFor(model => model.DisplayName)
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <input type="submit" value="Save" class="btn btn-primary" />
+            @Html.ActionLink("Change Password", "ChangePassword", "Account", new { @class="btn" })
+            @if (Model.Admin)
+            {
+                @Html.ActionLink("Admin Weights", "AdminWeights", "Account", new { @class="btn" })
+            }
+        
+    </div>
+    
+}
 @section javascript
 {
     <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>

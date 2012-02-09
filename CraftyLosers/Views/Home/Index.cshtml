@@ -3,7 +3,7 @@
     ViewBag.Title = "Crafty Losers";
 }
 <div class="row">
-    <div class="span10">
+    <div class="span7">
         <h2>
             Now showing on select scales...</h2>
         <ul>
@@ -29,10 +29,11 @@
         <span class="label notice">(unofficially)</span>
         <h2>Total Crafty Weight Lost: @ViewBag.TotalLost pounds</h2>
     </div>
-    <div class="span4">
+    <div class="span3 pull-right">
+     <div>
         <h3>
             Ranking</h3>
-        <table>
+        <table class="table table-striped table-condensed">
             <tr>
                 <th>
                     User
@@ -60,5 +61,6 @@
                 </tr>
             }
         </table>
+        </div>
     </div>
 </div>

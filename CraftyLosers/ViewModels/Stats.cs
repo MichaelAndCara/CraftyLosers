@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using CraftyLosers.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace CraftyLosers.ViewModels
 {

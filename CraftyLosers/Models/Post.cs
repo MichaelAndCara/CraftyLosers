@@ -30,5 +30,30 @@ namespace CraftyLosers.Models
 
         public User User { get; set; }
         public ICollection<Comment> Comments { get; set; }
+
+        public int LineCount
+        {
+            get
+            {
+                int count = 1;
+                int charLineCount = 1;
+
+                if (!string.IsNullOrEmpty(PostContent))
+                {
+                    //line count based on line breaks
+                    count = 1;
+                    int start = 0;
+                    while ((start = PostContent.IndexOf('\n', start)) != -1)
+                    {
+                        count++;
+                        start++;
+                    }
+
+                    //char count lines (+1)
+                    charLineCount = PostContent.Length / 100 + 1;
+                }
+                return Math.Max(5, Math.Max(count, charLineCount));
+            }
+        }
     }
 }

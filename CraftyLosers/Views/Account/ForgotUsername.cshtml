@@ -6,7 +6,7 @@
 
 <h2>Forgot Username</h2>
 
-@using (Html.BeginForm("ForgotUsername", "Account", FormMethod.Post, new { @class = "form-stacked" }))
+@using (Html.BeginForm("ForgotUsername", "Account", FormMethod.Post))
 {
     @Html.ValidationSummary(true)
 
@@ -14,8 +14,8 @@
     @Html.EditorFor(model => model.Email)
     @Html.ValidationMessageFor(model => model.Email)
         
-    <div class="actions">
-        <input type="submit" value="Request" class="btn primary" />
+    <div class="form-actions">
+        <input type="submit" value="Request" class="btn btn-primary" />
     </div>
 }
 

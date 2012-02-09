@@ -6,7 +6,7 @@
 
 <h2>Edit Post</h2>
 
-@using (Html.BeginForm("EditPost", "Post", FormMethod.Post, new { @class = "form-stacked" }))
+@using (Html.BeginForm("EditPost", "Post", FormMethod.Post))
 {
     @Html.ValidationSummary(true)
     
@@ -20,12 +20,12 @@
     @Html.ValidationMessageFor(model => model.Title)
     
     @Html.LabelFor(model => model.PostContent)
-    @Html.TextAreaFor(model => model.PostContent, new { @class = "xxlarge" })
+    @Html.TextAreaFor(model => model.PostContent, new { @class = "span7", @rows = Model.LineCount })
     @Html.ValidationMessageFor(model => model.PostContent)
     
-    <div class="actions">
-        <input type="submit" value="Save" class="btn primary" />
-        @Html.ActionLink("Cancel", "Posts", "Post", null, new { @class = "btn secondary" })
+    <div class="form-actions">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        @Html.ActionLink("Cancel", "Posts", "Post", null, new { @class = "btn" })
     </div>
 }
 @section javascript

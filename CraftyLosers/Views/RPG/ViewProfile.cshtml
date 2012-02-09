@@ -1,77 +1,81 @@
 ﻿@model CraftyLosers.Models.Profile
 
 @{
-	ViewBag.Title = "View Profile";
+    ViewBag.Title = "View Profile";
 }
-
+@section style
+{
+    .progress
+    {
+        height:28px;
+    }
+    .progress .bar
+    {
+        height:28px;
+        text-shadow: none;
+    }
+}
 @Html.Partial("_RpgNav")
 
 <h2>View Profile</h2>
 
 <div class="row">
-	<div class="span10">
-		<div class="form-stacked">
-			@Html.HiddenFor(model => model.User.Id)
+    <div class="span7">
+        <div class="form-vertical">
+            @Html.HiddenFor(model => model.User.Id)
 
-			@Html.LabelFor(model => model.User.UserName)
-			@if (Model.User.DisplayName)
-			{ 
-				@Html.DisplayFor(model => model.User.UserName)
-			}
-			else
-			{ 
-				@Html.DisplayFor(model => model.User.Id)
-			}
-			@Html.LabelFor(model => model.Level)
-			<div id="progressbar" class="span4">
-				<span style="position: absolute; margin-left: 10px; margin-top: 2px; padding-top: 3px;">@ViewBag.PGText
-				</span>
-			</div>
-			@Html.LabelFor(model => model.Points)
-			@Html.DisplayFor(model => model.Points)
-			@Html.LabelFor(model => model.Achievements)
-			@{
-				@Html.DisplayFor(model => model.Achievements.Count)
-			}
-			@Html.LabelFor(model => model.Quests)
-			@Html.DisplayFor(model => model.Quests)
-		</div>
-	</div>
-	<div class="span4">
-		<div>
-			<h3>Achievements Unlocked</h3>
-			@foreach (var item in Model.Achievements)
-			{
-				<span title="@item.Description" class="label success">@item.Title</span>
-			}
+            @Html.LabelFor(model => model.User.UserName)
+            @if (Model.User.DisplayName)
+            { 
+                @Html.TextBoxFor(model => model.User.UserName, new { @readonly = "readonly" })
+            }
+            else
+            { 
+                @Html.TextBoxFor(model => model.User.Id, new { @readonly = "readonly" })
+            }
+            @Html.LabelFor(model => model.Level)
+            <div class="row">
+                <div class="span3">
+                    <div class="progress progress-info">
+                        <div class="bar" style="text-align: left; width:@{<text>@Model.LevelPercent</text>}%;">
+                            <span style="position: absolute; margin-left: 10px; margin-top: 5px; font-size: 13px; line-height: 18px; color: #555;">@ViewBag.PGText
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.LabelFor(model => model.Points)
+            @Html.TextBoxFor(model => model.Points, new { @readonly = "readonly" })
+            @Html.LabelFor(model => model.Achievements)
+            @{
+                @Html.TextBoxFor(model => model.Achievements.Count, new { @readonly = "readonly" })
+            }
+            @Html.LabelFor(model => model.Quests)
+            @Html.TextBoxFor(model => model.Quests, new { @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="span3">
+        <div>
+            <h3>Achievements Unlocked</h3>
+            @foreach (var item in Model.Achievements)
+            {
+                <span title="@item.Description" class="label label-success">@item.Title</span>
+            }
             <div>@Html.ActionLink("View All", "Achievements", new { id = Model.User.Id })</div>
-		</div>
+        </div>
 @*        <hr />
-		<div>
-			<h3>
-				Quests Completed</h3>
-			@foreach (var item in Model.Achievements)
-			{
-				<span title="@item.Description" class="label important">@item.Title</span>
-			}
-		</div>*@
-	</div>
+        <div>
+            <h3>
+                Quests Completed</h3>
+            @foreach (var item in Model.Achievements)
+            {
+                <span title="@item.Description" class="label important">@item.Title</span>
+            }
+        </div>*@
+    </div>
 </div>
-<div class="form-stacked">
-	<div class="actions">
-		@Html.ActionLink("Back To Leaderboard", "Leaderboard", "RPG", null, new { @class = "btn secondary" })
-	</div>
+<div class="form-vertical">
+    <div class="form-actions">
+        @Html.ActionLink("Back To Leaderboard", "Leaderboard", "RPG", null, new { @class = "btn" })
+    </div>
 </div>
-@section javascript
-{
-	<script type="text/javascript">
-		$(function () {
-			var userId = $("#User_Id").val();
-			$.get('/RPG/GetLevel', { id: userId }, function (data) {
-				$("#progressbar").progressbar({
-					value: data
-				});
-			})
-		});
-	</script>
-}

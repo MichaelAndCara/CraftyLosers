@@ -48,21 +48,6 @@ namespace CraftyLosers.Controllers
             return View(profile);
         }
 
-        public JsonResult GetLevel(int id)
-        {
-            var user = db.Users.Include("WorkoutLogs").Where(e => e.Id == id).FirstOrDefault();
-
-            decimal points = user.WorkoutLogs.Sum(e => e.Calories);
-
-            var profile = new Profile(user, points);
-
-            decimal x = (100 / Convert.ToDecimal(profile.LevelCap));
-
-            int y = Convert.ToInt32(profile.LevelPoints * x);
-
-            return Json(y, JsonRequestBehavior.AllowGet);
-        }
-
         public ActionResult WorkoutLog(int? page = 1)
         {
             int startIndex = CraftyLosers.Util.PageCalculator.StartIndex(page, ItemsPerPage);

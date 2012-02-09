@@ -7,26 +7,25 @@
 @Html.Partial("_RpgNav")
 
 <h3>Are you sure you want to delete this?</h3>
-<div class="form-stacked">
-    
-    @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.UserId)
     @Html.HiddenFor(model => model.WorkoutRefId)
 
     @Html.LabelFor(model => model.WorkoutRef.Description)
-    @Html.DisplayFor(model => model.WorkoutRef.Description)
+    @Html.TextBoxFor(model => model.WorkoutRef.Description, new { @readonly = "readonly" })
 
     @Html.LabelFor(model => model.WorkoutDate)
-    @Html.DisplayFor(model => model.WorkoutDate)
+    @Html.TextBox("WorkoutDate",Model.WorkoutDate.ToString("MM/dd/yyyy"), new { @readonly = "readonly" })
 
     @Html.LabelFor(model => model.Qty)
-    @Html.DisplayFor(model => model.Qty)
+    @Html.TextBoxFor(model => model.Qty, new { @readonly = "readonly" })
 
     @Html.LabelFor(model => model.Calories)
-    @Html.DisplayFor(model => model.Calories)
-</div>
-@using (Html.BeginForm("DeleteLog","RPG", FormMethod.Post, new { @class="form-stacked" })) {
-    <div class="actions">
-        <input type="submit" value="Delete" class="btn primary" />
-        @Html.ActionLink("Cancel", "WorkoutLog", "RPG", null, new { @class="btn secondary" })
+    @Html.TextBoxFor(model => model.Calories, new { @readonly = "readonly" })
+@using (Html.BeginForm("DeleteLog", "RPG", FormMethod.Post, new { @class = "form-vertical" }))
+{
+
+    <div class="form-actions">
+        <input type="submit" value="Delete" class="btn btn-primary" />
+        @Html.ActionLink("Cancel", "WorkoutLog", "RPG", null, new { @class = "btn" })
     </div>
 }

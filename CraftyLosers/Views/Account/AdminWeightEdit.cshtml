@@ -1,12 +1,10 @@
 ﻿@model CraftyLosers.Models.User
-
 @{
     ViewBag.Title = "Admin Weight";
 }
-
-<h2>Admin Weight</h2>
-
-@using (Html.BeginForm("AdminWeightEdit", "Account", FormMethod.Post, new { @class="form-stacked" }))
+<h2>
+    Admin Weight</h2>
+@using (Html.BeginForm("AdminWeightEdit", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.ValidationSummary(true)
 
@@ -19,27 +17,46 @@
     @Html.HiddenFor(model => model.Paid)
     @Html.HiddenFor(model => model.Email)
     
-    @Html.LabelFor(model => model.Id)
-    @Html.DisplayFor(model => model.Id)
-    
-    @Html.LabelFor(model => model.UserName)
-    @Html.DisplayFor(model => model.UserName)
-    
-    @Html.LabelFor(model => model.Active)
-    @Html.EditorFor(model => model.Active)
-    @Html.ValidationMessageFor(model => model.Active)
-    
-    @Html.LabelFor(model => model.StartWeight)
-    @Html.EditorFor(model => model.StartWeight)
-    @Html.ValidationMessageFor(model => model.StartWeight)
-    
-    @Html.LabelFor(model => model.EndWeight)
-    @Html.EditorFor(model => model.EndWeight)
-    @Html.ValidationMessageFor(model => model.EndWeight)
-    
-    <div class="actions">
-        <input type="submit" value="Save" class="btn primary" />
-        @Html.ActionLink("Cancel", "AdminWeights", "Account", null, new { @class="btn secondary" })
+    <div class="control-group">
+        @Html.LabelFor(model => model.Id)
+        <div class="controls">
+            @Html.TextBoxFor(model => model.Id, new { @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.UserName)
+        <div class="controls">
+            @Html.TextBoxFor(model => model.UserName, new { @readonly = "readonly" })
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Active)
+        <div class="controls">
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.StartWeight)
+        <div class="controls">
+            @Html.EditorFor(model => model.StartWeight)
+            @Html.ValidationMessageFor(model => model.StartWeight)
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.EndWeight)
+        <div class="controls">
+            @Html.EditorFor(model => model.EndWeight)
+            @Html.ValidationMessageFor(model => model.EndWeight)
+        </div>
+    </div>
+    <div class="form-actions">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        @Html.ActionLink("Cancel", "AdminWeights", "Account", null, new { @class = "btn" })
     </div>
 }
-
+@section javascript
+{
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+}

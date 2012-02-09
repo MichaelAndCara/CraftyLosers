@@ -59,5 +59,16 @@ namespace CraftyLosers.Models
         public int LevelCap { get { return Level * 100; } }
         public int LevelMax { get; set; }
         public decimal LevelFactor { get; set; }
+        public int LevelPercent
+        {
+            get
+            {
+                decimal x = (100 / Convert.ToDecimal(LevelCap));
+
+                int y = Convert.ToInt32(LevelPoints * x);
+
+                return y;
+            }
+        }
     }
 }

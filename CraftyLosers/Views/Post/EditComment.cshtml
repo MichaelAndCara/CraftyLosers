@@ -6,7 +6,7 @@
 
 <h2>Edit Comment</h2>
 
-@using (Html.BeginForm("EditComment", "Post", FormMethod.Post, new { @class = "form-stacked" }))
+@using (Html.BeginForm("EditComment", "Post", FormMethod.Post))
 {
     @Html.ValidationSummary(true)
 
@@ -16,11 +16,11 @@
     @Html.HiddenFor(model => model.UserId)
     
     @Html.LabelFor(model => model.CommentContent)
-    @Html.TextAreaFor(model => model.CommentContent, new { @class = "xxlarge" })
+    @Html.TextAreaFor(model => model.CommentContent, new { @class = "span7", @rows = Model.LineCount })
     @Html.ValidationMessageFor(model => model.CommentContent)
-    <div class="actions">
-        <input type="submit" value="Save" class="btn primary" />
-        @Html.ActionLink("Cancel", "Posts", "Post", null, new { @class="btn secondary" })
+    <div class="form-actions">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        @Html.ActionLink("Cancel", "Posts", "Post", null, new { @class="btn" })
     </div>
 }
 

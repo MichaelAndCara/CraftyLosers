@@ -1,35 +1,89 @@
 ﻿@model CraftyLosers.ViewModels.Stats
-
 @{
     ViewBag.Title = "Stats";
 }
-
-<h2>Stats</h2>
-<div class="form-stacked">        
-    @Html.LabelFor(model => model.DaysLeft)
-    @Html.DisplayFor(model => model.DaysLeft)
-    
-    @Html.LabelFor(model => model.WeeksLeft)
-    @Html.DisplayFor(model => model.WeeksLeft)
-    
-    @Html.LabelFor(model => model.StartingWeight)
-    @Html.DisplayFor(model => model.StartingWeight)
-    
-    @Html.LabelFor(model => model.GoalWeight)
-    @Html.DisplayFor(model => model.GoalWeight)
-    
-    @Html.LabelFor(model => model.CurrentWeight)
-    @Html.DisplayFor(model => model.CurrentWeight)
-    
-    @Html.LabelFor(model => model.PercentLost)
-    @Html.DisplayFor(model => model.PercentLost)
-    
-    @Html.LabelFor(model => model.WeightLeft)
-    @Html.DisplayFor(model => model.WeightLeft)
-    
-    @Html.LabelFor(model => model.PoundsLost)
-    @Html.DisplayFor(model => model.PoundsLost)
-    
-    @Html.LabelFor(model => model.PerWeek)
-    @Html.DisplayFor(model => model.PerWeek)
+@section style
+{
+    .form-horizontal .control-group 
+    {
+        margin-bottom: 0px;
+    }
+    .control-group 
+    {
+        margin-bottom: 0px;
+    }
+    .form-horizontal .control-group > label 
+    {
+        float: left;
+        width: 200px;
+        padding-top: 5px;
+        text-align: right;
+    }
+    .form-horizontal .controls 
+    {
+        margin-left: 220px;
+    }    
+}
+<h2>
+    Stats</h2>
+<div class="row">
+    <div class="form-horizontal span5">
+        <div class="control-group">
+            @Html.LabelFor(model => model.DaysLeft)
+            <div class="controls">
+                @Html.TextBoxFor(model => model.DaysLeft, new { @readonly = "readonly", @class = "span1" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.WeeksLeft)
+            <div class="controls">
+                @Html.TextBoxFor(model => model.WeeksLeft, new { @readonly = "readonly", @class = "span1" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.StartingWeight)
+            <div class="controls">
+                @Html.TextBoxFor(model => model.StartingWeight, new { @readonly = "readonly", @class = "span1" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.GoalWeight)
+            <div class="controls">
+                @Html.TextBoxFor(model => model.GoalWeight, new { @readonly = "readonly", @class = "span1" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.CurrentWeight)
+            <div class="controls">
+                @Html.TextBoxFor(model => model.CurrentWeight, new { @readonly = "readonly", @class = "span1" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.PercentLost)
+            <div class="controls">
+                @Html.TextBoxFor(model => model.PercentLost, new { @readonly = "readonly", @class = "span1" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.WeightLeft)
+            <div class="controls">
+                @Html.TextBoxFor(model => model.WeightLeft, new { @readonly = "readonly", @class = "span1" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.PoundsLost)
+            <div class="controls">
+                @Html.TextBoxFor(model => model.PoundsLost, new { @readonly = "readonly", @class = "span1" })
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.LabelFor(model => model.PerWeek)
+            <div class="controls">
+                @Html.TextBox("PerWeek",Model.PerWeek.ToString("0.00"), new { @readonly = "readonly", @class = "span1" })
+            </div>
+        </div>
+    </div>
+    <div class="span5">
+        Future home of graph
+    </div>
 </div>

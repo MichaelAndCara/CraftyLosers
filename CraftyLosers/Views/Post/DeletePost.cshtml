@@ -1,23 +1,20 @@
 ﻿@model CraftyLosers.Models.Post
-
 @{
     ViewBag.Title = "Delete Post";
 }
-
-<h2>Delete Post</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div class="form-stacked">
+<h2>
+    Delete Post</h2>
+<h3>
+    Are you sure you want to delete this?</h3>
+@using (Html.BeginForm("DeletePost", "Post", FormMethod.Post))
+{
     @Html.LabelFor(model => model.Title)
-    @Html.DisplayFor(model => model.Title)
+    @Html.TextBoxFor(model => model.Title, new { @readonly = "readonly" })
 
     @Html.LabelFor(model => model.PostContent)
-    @Html.DisplayFor(model => model.PostContent)
-</div>
-@using (Html.BeginForm("DeletePost", "Post", FormMethod.Post, new { @class = "form-stacked" }))
-{
-    <div class="actions">
-        <input type="submit" value="Delete" class="btn primary" /> 
-        @Html.ActionLink("Cancel", "Posts", "Post", null, new { @class = "btn secondary" })
+    @Html.TextAreaFor(model => model.PostContent, new { @class="span7", @rows=Model.LineCount, @readonly = "readonly" })
+    <div class="form-actions">
+        <input type="submit" value="Delete" class="btn btn-primary" />
+        @Html.ActionLink("Cancel", "Posts", "Post", null, new { @class = "btn" })
     </div>
 }

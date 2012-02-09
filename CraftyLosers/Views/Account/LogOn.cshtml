@@ -5,7 +5,7 @@
 }
 
 <h2>Log On</h2>
-@using (Html.BeginForm("LogOn", "Account", FormMethod.Post, new { @class="form-stacked" }))
+@using (Html.BeginForm("LogOn", "Account", FormMethod.Post))
 {
     @Html.ValidationSummary(true)
 
@@ -21,10 +21,10 @@
     @Html.EditorFor(model => model.RememberMe)
     @Html.ValidationMessageFor(model => model.RememberMe)
     
-    <div class="actions">
-        <input type="submit" value="Log On" class="btn primary" /> 
-        @Html.ActionLink("Register", "Register", "Account", null, new { @class="btn secondary" })
-        @Html.ActionLink("Forgot Password?", "ResetPassword", "Account", null, new { @class="btn secondary" })
+    <div class="form-actions">
+        <input type="submit" value="Log On" class="btn btn-primary" /> 
+        @Html.ActionLink("Register", "Register", "Account", null, new { @class="btn" })
+        @Html.ActionLink("Forgot Password?", "ResetPassword", "Account", null, new { @class="btn" })
     </div>
 }
 

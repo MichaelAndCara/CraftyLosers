@@ -1,18 +1,23 @@
 ﻿<h2>
     Crafty Losers RPG (BETA)</h2>
-<div class="rpg_topbar">
-    <div class="topbar-inner">
+<div class="rpg_topbar navbar">
+    <div class="navbar-inner">
         <div class="container">
-            <ul class="nav" style="color: #BFBFBF;">
-                <li>@Html.ActionLink("Profile", "Profile", "RPG")</li>
-                <li>@Html.ActionLink("Track", "WorkoutLog", "RPG")</li>
-                <li>@Html.ActionLink("Leaderboard", "Leaderboard", "RPG")</li>
-                <li>@Html.ActionLink("Achievements", "Achievements", "RPG")</li>
-                <li><a href="#">Quests (coming soon)</a></li>
-                <li>@Html.ActionLink("About", "About", "RPG")</li>
-                @*<li>@Html.ActionLink("Achievements", "Achievements", "RPG")</li>
-                <li>@Html.ActionLink("Quests", "Quests", "RPG")</li>*@
-            </ul>
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="nav-collapse">
+                <ul class="nav" style="color: #BFBFBF;">
+                    <li>@Html.ActionLink("Profile", "Profile", "RPG")</li>
+                    <li>@Html.ActionLink("Track", "WorkoutLog", "RPG")</li>
+                    <li>@Html.ActionLink("Leaderboard", "Leaderboard", "RPG")</li>
+                    <li>@Html.ActionLink("Achievements", "Achievements", "RPG")</li>
+                    <li><a href="#">Quests (coming soon)</a></li>
+                    <li>@Html.ActionLink("About", "About", "RPG")</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

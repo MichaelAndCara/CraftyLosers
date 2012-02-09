@@ -1,12 +1,18 @@
 ﻿@model CraftyLosers.ViewModels.CheckIn
-
+@section style
+{
+    #CheckInDate
+    {
+        cursor: default;
+    }
+}
 @{
     ViewBag.Title = "CheckIn";
 }
 
 <h2>CheckIn</h2>
 
-@using (Html.BeginForm("CheckIn", "Weight", FormMethod.Post, new { @class = "form-stacked" }))
+@using (Html.BeginForm("CheckIn", "Weight", FormMethod.Post))
 {
     @Html.ValidationSummary(true)
     
@@ -18,8 +24,9 @@
     @Html.EditorFor(model => model.Weight)
     @Html.ValidationMessageFor(model => model.Weight)
     
-    <div class="actions">
-        <input type="submit" value="Create" class="btn primary" /> @Html.ActionLink("Cancel", "WeightCheckIns", null, new { @class="btn secondary" })
+    <div class="form-actions">
+        <input type="submit" value="Create" class="btn btn-primary" /> 
+        @Html.ActionLink("Cancel", "WeightCheckIns", null, new { @class="btn" })
     </div>
 }
 @section javascript
