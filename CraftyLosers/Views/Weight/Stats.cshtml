@@ -10,7 +10,7 @@
     }
     .control-group 
     {
-        margin-bottom: 0px;
+        margin-bottom: 15px;
     }
     .form-horizontal .control-group > label 
     {
@@ -22,7 +22,7 @@
     .form-horizontal .controls 
     {
         margin-left: 220px;
-    }    
+    } 
 }
 <h2>
     Stats</h2>
@@ -61,7 +61,7 @@
         <div class="control-group">
             @Html.LabelFor(model => model.PercentLost)
             <div class="controls">
-                @Html.TextBoxFor(model => model.PercentLost, new { @readonly = "readonly", @class = "span1" })
+                @Html.TextBox("PercentLost", Model.PercentLost.ToString("0.00"), new { @readonly = "readonly", @class = "span1" })
             </div>
         </div>
         <div class="control-group">

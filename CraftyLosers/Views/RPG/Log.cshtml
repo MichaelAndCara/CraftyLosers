@@ -1,67 +1,78 @@
 ﻿@model CraftyLosers.ViewModels.Workout
-
 @{
     ViewBag.Title = "Log";
 }
 @section style
 {
-    #WorkoutDate
+    #WorkoutDate { cursor: default; }
+
+    .form-horizontal .control-group 
     {
-        cursor: default;
+        margin-bottom: 10px;
     }
 }
 @Html.Partial("_RpgNav")
-
-<h2>Log</h2>
-
-@using (Html.BeginForm("Log", "RPG", FormMethod.Post, new { @class = "form-stacked" }))
+<h2>
+    Log</h2>
+@using (Html.BeginForm("Log", "RPG", FormMethod.Post, new { @class = "form-horizontal" }))
 {
 	
-	@Html.ValidationSummary(true)
-
-    @Html.LabelFor(model => model.WorkoutDate)
-    @Html.EditorFor(model => model.WorkoutDate)
-    @Html.ValidationMessageFor(model => model.WorkoutDate)
-
+    @Html.ValidationSummary(true)
+    <div class="control-group">
+        @Html.LabelFor(model => model.WorkoutDate)
+        <div class="controls">
+            @Html.EditorFor(model => model.WorkoutDate)
+            @Html.ValidationMessageFor(model => model.WorkoutDate)
+        </div>
+    </div>
     <hr />
-
-	@Html.LabelFor(model => model.DurationWorkouts)
-	@Html.DropDownListFor(model => model.DurationId, Model.DurationWorkouts)
-	@Html.LabelFor(model => model.Duration)
-	@Html.TextBoxFor(model => model.Duration, new { @class = "mini" })
-	@Html.ValidationMessageFor(model => model.Duration)
-
-	<hr />
-	
-	@Html.LabelFor(model => model.RepWorkouts)
-	@Html.DropDownListFor(model => model.RepId, Model.RepWorkouts)
-	@Html.LabelFor(model => model.Rep)
-	@Html.TextBoxFor(model => model.Rep, new { @class = "mini" })
-	@Html.ValidationMessageFor(model => model.Rep)
-	
-	<div class="actions">
-		<input type="submit" value="Log" class="btn primary" />
-		@Html.ActionLink("Cancel", "WorkoutLog", "RPG", null, new { @class = "btn secondary" })
-	</div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.DurationWorkouts)
+        <div class="controls">
+            @Html.DropDownListFor(model => model.DurationId, Model.DurationWorkouts)
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Duration)
+        <div class="controls">
+            @Html.TextBoxFor(model => model.Duration, new { @class = "mini" })
+            @Html.ValidationMessageFor(model => model.Duration)
+        </div>
+    </div>
+    <hr />
+    <div class="control-group">
+        @Html.LabelFor(model => model.RepWorkouts)
+        <div class="controls">
+            @Html.DropDownListFor(model => model.RepId, Model.RepWorkouts)
+        </div>
+    </div>
+    <div class="control-group">
+        @Html.LabelFor(model => model.Rep)
+        <div class="controls">
+            @Html.TextBoxFor(model => model.Rep, new { @class = "mini" })
+            @Html.ValidationMessageFor(model => model.Rep)
+        </div>
+    </div>
+    <div class="form-actions">
+        <input type="submit" value="Log" class="btn btn-primary" />
+        @Html.ActionLink("Cancel", "WorkoutLog", "RPG", null, new { @class = "btn" })
+    </div>
 }
-
 @section javascript
 {
-	<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-	<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
-        <script type="text/javascript">
-            $(function () {
-                $("#WorkoutDate").datepicker(
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#WorkoutDate").datepicker(
                 {
                     minDate: new Date("1/24/2012"),
                     maxDate: new Date("4/26/2012")
                 });
 
-                $("#WorkoutDate").attr('readonly', true);
+            $("#WorkoutDate").attr('readonly', true);
 
-                $("#WorkoutDate").datepicker('setDate', new Date());
-            });
-	</script>
+            $("#WorkoutDate").datepicker('setDate', new Date());
+        });
+    </script>
 }
-
-
