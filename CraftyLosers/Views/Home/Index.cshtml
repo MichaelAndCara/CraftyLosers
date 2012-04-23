@@ -17,8 +17,8 @@
             <li>Joann Burner will enter your Start Weight at the beginning of the contest and your
                 Final Weight at the end of the contest.</li>
             <li>The winners will be determined by the greatest percentage of weight lost.</li>
-            <li>Sign up on this site can remain anonymous.  You have the option to keep your user name 
-                from showing</li>
+            <li>Sign up on this site can remain anonymous. You have the option to keep your user
+                name from showing</li>
             <li>You may record you weight as many times as you like between the start and end dates,
                 which will reflect progress.</li>
             <li>Tools, reports, charts, goals, etc may be added to the site eventually. Recommendations
@@ -27,40 +27,73 @@
         </ul>
         <hr />
         <span class="label label-info">(unofficially)</span>
-        <h2>Total Crafty Weight Lost: @ViewBag.TotalLost pounds</h2>
+        <h2>
+            Total Crafty Weight Lost: @ViewBag.TotalLost pounds</h2>
     </div>
     <div class="span3 pull-right">
-     <div>
-        <h3>
-            Ranking</h3>
-        <table class="table table-striped table-condensed">
-            <tr>
-                <th>
-                    User
-                </th>
-                <th style="text-align: right;">
-                    % Lost
-                </th>
-            </tr>
-            @foreach (var item in Model)
-            {
+        <div>
+            <h3>
+                Official Ranking</h3>
+            <table class="table table-striped table-condensed">
                 <tr>
-                    <td>
-                        @if (item.User.DisplayName)
-                        {
-                            @Html.DisplayFor(modelItem => item.User.UserName)
-                        }
-                        else
-                        {
-                            @Html.DisplayFor(modelItem => item.User.Id) 
-                        }
-                    </td>
-                    <td style="text-align: right;">
-                        @Html.DisplayFor(modelItem => item.PercentLost)
-                    </td>
+                    <th>
+                        User
+                    </th>
+                    <th style="text-align: right;">
+                        % Lost
+                    </th>
                 </tr>
-            }
-        </table>
+                @foreach (var item in Model.OrderByDescending(e => e.OfficialPercentLost).ToList())
+                {
+                    <tr>
+                        <td>
+                            @if (item.User.DisplayName)
+                            {
+                                @Html.DisplayFor(modelItem => item.User.UserName)
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.User.Id) 
+                            }
+                        </td>
+                        <td style="text-align: right;">
+                            @Html.DisplayFor(modelItem => item.OfficialPercentLost)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div>
+            <h3>
+                Ranking</h3>
+            <table class="table table-striped table-condensed">
+                <tr>
+                    <th>
+                        User
+                    </th>
+                    <th style="text-align: right;">
+                        % Lost
+                    </th>
+                </tr>
+                @foreach (var item in Model.OrderByDescending(e => e.PercentLost).ToList())
+                {
+                    <tr>
+                        <td>
+                            @if (item.User.DisplayName)
+                            {
+                                @Html.DisplayFor(modelItem => item.User.UserName)
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.User.Id) 
+                            }
+                        </td>
+                        <td style="text-align: right;">
+                            @Html.DisplayFor(modelItem => item.PercentLost)
+                        </td>
+                    </tr>
+                }
+            </table>
         </div>
     </div>
 </div>

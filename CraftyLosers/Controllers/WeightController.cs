@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using CraftyLosers.Repositories;
 using CraftyLosers.Models;
 using CraftyLosers.ViewModels;
+using System.IO;
+using System.Web.Helpers;
 
 namespace CraftyLosers.Controllers
 {
@@ -87,12 +89,11 @@ namespace CraftyLosers.Controllers
         public ActionResult Stats()
         {
             var user = db.Users.Include("WeightCheckIns").Where(e => e.UserName == HttpContext.User.Identity.Name).FirstOrDefault();
+
             if (user.WeightCheckIns.Count > 0 && Convert.ToDecimal(user.GoalWeight) > 80)
             {
                 var stats = new Stats(user);
-                //stats.StartingWeight = Convert.ToDecimal(user.StartWeight);
-                //stats.GoalWeight = Convert.ToDecimal(user.GoalWeight);
-                //stats.CurrentWeight = user.WeightCheckIns.OrderByDescending(e => e.CheckInDate).ToList()[0].Weight;
+
                 return View(stats);
             }
             else
@@ -100,6 +101,25 @@ namespace CraftyLosers.Controllers
                 ModelState.AddModelError("", "You need to have your Intial Weight, Goal Weight, and at least one Check In Weight entered to view Stats.");
                 return View();
             }
+        }
+
+        public ActionResult GetChart()
+        {
+            var user = db.Users.Include("WeightCheckIns").Where(e => e.UserName == HttpContext.User.Identity.Name).FirstOrDefault();
+            var weights = user.WeightCheckIns.Select(e => e.Weight).ToList();
+            var dates = user.WeightCheckIns.Select(e => e.CheckInDate).ToList();
+            var chart = new Chart(width: 600, height: 440, theme: ChartTheme.Blue);
+            chart.SetYAxis(min: Convert.ToDouble(Math.Round(weights.Min()) - 1), max: Convert.ToDouble(Math.Round(weights.Max()) + 1));
+            chart.AddSeries(
+                    name: "Checkins",
+                    chartType: "Line",
+                    chartArea: null,
+                    xValue: dates,
+                    xField: "Checkin Dates",
+                    yValues: weights,
+                    yFields: "Weights").Write();
+
+            return null;
         }
     }
 }

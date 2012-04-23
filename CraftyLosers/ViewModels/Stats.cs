@@ -5,6 +5,8 @@ using System.Web;
 using System.ComponentModel;
 using CraftyLosers.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Helpers;
+using System.Web.Mvc;
 
 namespace CraftyLosers.ViewModels
 {
@@ -41,6 +43,22 @@ namespace CraftyLosers.ViewModels
             get
             {
                 return PoundsLost / StartingWeight * 100;
+            }
+        }
+
+        [DisplayName("Official Percent Lost")]
+        public decimal OfficialPercentLost
+        {
+            get
+            {
+                if (User.EndWeight != null)
+                {
+                    return (StartingWeight - Convert.ToDecimal(User.EndWeight)) / StartingWeight * 100;
+                }
+                else
+                {
+                    return 0;
+                }
             }
         }
 

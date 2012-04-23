@@ -26,8 +26,6 @@ namespace CraftyLosers.Controllers
                 stats.Add(new Stats(user));
             }
 
-            stats = stats.OrderByDescending(e => e.PercentLost).ToList();
-
             ViewBag.TotalLost = Convert.ToInt32(stats.Sum(e => e.PoundsLost));
 
             return View(stats);
