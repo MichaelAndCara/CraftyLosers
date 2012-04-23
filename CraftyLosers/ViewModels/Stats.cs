@@ -15,8 +15,19 @@ namespace CraftyLosers.ViewModels
         public Stats(User user)
         {
             StartingWeight = Convert.ToDecimal(user.StartWeight);
-            GoalWeight = Convert.ToDecimal(user.GoalWeight);
-            CurrentWeight = user.WeightCheckIns.OrderByDescending(e => e.CheckInDate).ToList()[0].Weight;
+            if(user.GoalWeight != null)
+                GoalWeight = Convert.ToDecimal(user.GoalWeight);
+            if (user.WeightCheckIns != null)
+            {
+                if (user.WeightCheckIns.Count > 0)
+                {
+                    CurrentWeight = user.WeightCheckIns.OrderByDescending(e => e.CheckInDate).ToList()[0].Weight;
+                }
+            }
+            if (user.EndWeight != null)
+            {
+                CurrentWeight = Convert.ToDecimal(user.EndWeight);
+            }
             User = user;
         }
 
@@ -77,6 +88,22 @@ namespace CraftyLosers.ViewModels
             get
             {
                 return StartingWeight - CurrentWeight;
+            }
+        }
+
+        [DisplayName("Official Pounds Lost")]
+        public decimal OfficialPoundsLost
+        {
+            get
+            {
+                if (User.EndWeight != null)
+                {
+                    return StartingWeight - Convert.ToDecimal(User.EndWeight);
+                }
+                else
+                {
+                    return 0;
+                }
             }
         }
 

@@ -15,18 +15,21 @@ namespace CraftyLosers.Controllers
         public ActionResult Index()
         {
             var users = db.Users.Include("WeightCheckIns").Where(e =>
-                e.WeightCheckIns.Count > 0 &&
+                (e.WeightCheckIns.Count > 0 || e.EndWeight != null) &&
                 e.StartWeight.Value >= 80 &&
-                e.GoalWeight.Value >= 80);
+                (e.GoalWeight.Value >= 80 || e.EndWeight != null));
 
             List<Stats> stats = new List<Stats>();
 
             foreach (var user in users)
             {
-                stats.Add(new Stats(user));
+                var stat = new Stats(user);
+                if(stat.PoundsLost >= 0 || stat.OfficialPoundsLost >= 0)
+                    stats.Add(new Stats(user));
             }
 
             ViewBag.TotalLost = Convert.ToInt32(stats.Sum(e => e.PoundsLost));
+            ViewBag.OfficialTotalLost = Convert.ToInt32(stats.Sum(e => e.OfficialPoundsLost));
 
             return View(stats);
         }
