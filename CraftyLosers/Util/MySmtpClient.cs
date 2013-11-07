@@ -14,7 +14,7 @@ namespace CraftyLosers.Util
             base.EnableSsl = true;
             base.DeliveryMethod = SmtpDeliveryMethod.Network;
             base.UseDefaultCredentials = false;
-            base.Credentials = new NetworkCredential("craftyloser@gmail.com", "pr3v3n1n9");
+            base.Credentials = new NetworkCredential("craftyloser@gmail.com", "*********");
         }  
 
         //var fromAddress = new MailAddress("craftyloser@gmail.com");
