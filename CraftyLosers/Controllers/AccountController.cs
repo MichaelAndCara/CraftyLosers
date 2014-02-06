@@ -12,6 +12,7 @@ using System.Net.Mail;
 using System.Net;
 using CraftyLosers.Util;
 using System.Web.Security;
+using System.Data.Entity;
 
 namespace CraftyLosers.Controllers
 {

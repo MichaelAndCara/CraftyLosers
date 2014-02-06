@@ -52,7 +52,7 @@ namespace CraftyLosers.Controllers
                 Weight = CheckIn.Weight
             };
 
-            db.Entry(weightCheckIn).State = System.Data.EntityState.Added;
+            db.Entry(weightCheckIn).State = System.Data.Entity.EntityState.Added;
             db.SaveChanges();
 
             return RedirectToAction("WeightCheckIns");
@@ -66,7 +66,7 @@ namespace CraftyLosers.Controllers
         [HttpPost]
         public ActionResult Delete(WeightCheckIn weightCheckIn)
         {
-            db.Entry(weightCheckIn).State = System.Data.EntityState.Deleted;
+            db.Entry(weightCheckIn).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
 
             return RedirectToAction("WeightCheckIns");
@@ -80,7 +80,7 @@ namespace CraftyLosers.Controllers
         [HttpPost]
         public ActionResult Edit(WeightCheckIn weightCheckIn)
         {
-            db.Entry(weightCheckIn).State = System.Data.EntityState.Modified;
+            db.Entry(weightCheckIn).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("WeightCheckIns");

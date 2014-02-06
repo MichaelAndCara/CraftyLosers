@@ -43,7 +43,7 @@ namespace CraftyLosers.Controllers
             post.UserId = user.Id;
             post.DateCreated = DateTime.Now;
             post.DateModified = DateTime.Now;
-            db.Entry(post).State = System.Data.EntityState.Added;
+            db.Entry(post).State = System.Data.Entity.EntityState.Added;
             db.SaveChanges();
 
             return RedirectToAction("Posts");
@@ -59,7 +59,7 @@ namespace CraftyLosers.Controllers
         {
             post.DateModified = DateTime.Now;
 
-            db.Entry(post).State = System.Data.EntityState.Modified;
+            db.Entry(post).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("Posts");
@@ -76,9 +76,9 @@ namespace CraftyLosers.Controllers
             var comments = db.Comments.Where(e => e.PostId == post.Id);
             foreach (var comment in comments)
             {
-                db.Entry(comment).State = System.Data.EntityState.Deleted;
+                db.Entry(comment).State = System.Data.Entity.EntityState.Deleted;
             }
-            db.Entry(post).State = System.Data.EntityState.Deleted;
+            db.Entry(post).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
 
             return RedirectToAction("Posts");
@@ -104,7 +104,7 @@ namespace CraftyLosers.Controllers
             comment.CommentDateTime = DateTime.Now;
             comment.UserId = user.Id;
 
-            db.Entry(comment).State = System.Data.EntityState.Added;
+            db.Entry(comment).State = System.Data.Entity.EntityState.Added;
             db.SaveChanges();
 
             return RedirectToAction("Posts");
@@ -118,7 +118,7 @@ namespace CraftyLosers.Controllers
         [HttpPost]
         public ActionResult EditComment(Comment comment)
         {
-            db.Entry(comment).State = System.Data.EntityState.Modified;
+            db.Entry(comment).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("Posts");
@@ -132,7 +132,7 @@ namespace CraftyLosers.Controllers
         [HttpPost]
         public ActionResult DeleteComment(Comment comment)
         {
-            db.Entry(comment).State = System.Data.EntityState.Deleted;
+            db.Entry(comment).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
 
             return RedirectToAction("Posts");

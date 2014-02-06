@@ -86,7 +86,7 @@ namespace CraftyLosers.Controllers
                 workoutLog.WorkoutRefId = workoutRef.Id;
                 workoutLog.Calories = workoutRef.Calories * workout.Duration.Value;
 
-                db.Entry(workoutLog).State = System.Data.EntityState.Added;
+                db.Entry(workoutLog).State = System.Data.Entity.EntityState.Added;
                 db.SaveChanges();
             }
 
@@ -101,7 +101,7 @@ namespace CraftyLosers.Controllers
                 workoutLog.WorkoutRefId = workoutRef.Id;
                 workoutLog.Calories = workoutRef.Calories * workout.Rep.Value;
 
-                db.Entry(workoutLog).State = System.Data.EntityState.Added;
+                db.Entry(workoutLog).State = System.Data.Entity.EntityState.Added;
                 db.SaveChanges();
             }
 
@@ -119,7 +119,7 @@ namespace CraftyLosers.Controllers
             var workoutRef = db.WorkoutRefs.Find(workoutLog.WorkoutRefId);
             workoutLog.Calories = workoutRef.Calories * workoutLog.Qty;
 
-            db.Entry(workoutLog).State = EntityState.Modified;
+            db.Entry(workoutLog).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("WorkoutLog");
@@ -133,7 +133,7 @@ namespace CraftyLosers.Controllers
         [HttpPost]
         public ActionResult DeleteLog(WorkoutLog workoutLog)
         {
-            db.Entry(workoutLog).State = EntityState.Deleted;
+            db.Entry(workoutLog).State = System.Data.Entity.EntityState.Deleted;
             db.SaveChanges();
 
             return RedirectToAction("WorkoutLog");
