@@ -34,7 +34,7 @@ namespace CraftyLosers.ViewModels
         public User User { get; private set; }
 
         [DisplayName("Total days left of the competition")]
-        public int DaysLeft { get { return (new DateTime(2012, 4, 27) - DateTime.Today).Days; } }
+        public int DaysLeft { get { return (new DateTime(2014, 5, 9) - DateTime.Today).Days; } }
 
         [DisplayName("Total weeks left of the competition")]
         public int WeeksLeft { get { return Convert.ToInt32(Math.Ceiling((double)DaysLeft / 7)); } }
