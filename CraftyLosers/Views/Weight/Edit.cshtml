@@ -20,7 +20,7 @@
     @Html.HiddenFor(model => model.UserId)
     
     @Html.LabelFor(model => model.CheckInDate)
-    @Html.EditorFor(model => model.CheckInDate)
+    @Html.TextBoxFor(model => model.CheckInDate,"{0:MM/dd/yyyy}")    
     @Html.ValidationMessageFor(model => model.CheckInDate)
     
     @Html.LabelFor(model => model.Weight)
