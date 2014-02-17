@@ -14,12 +14,12 @@ namespace CraftyLosers.Util
             base.EnableSsl = true;
             base.DeliveryMethod = SmtpDeliveryMethod.Network;
             base.UseDefaultCredentials = false;
-            base.Credentials = new NetworkCredential("craftyloser@gmail.com", "pr3v3n1n9");
+            base.Credentials = new NetworkCredential("craftyloser@gmail.com", "password");
         }  
 
         //var fromAddress = new MailAddress("craftyloser@gmail.com");
         //    var toAddress = new MailAddress(user.Email, user.UserName);
-        //    const string fromPassword = "pr3v3n1n9";
+        //    const string fromPassword = "password";
         //    const string subject = "Welcome to Crafty Losers!";
         //    string body = "Welcome to Crafty Losers!  Good luck!";
 
