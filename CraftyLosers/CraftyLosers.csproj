@@ -218,6 +218,7 @@
     <Content Include="README.jQuery.vsdoc.txt" />
     <Content Include="Scripts\bootstrap-dropdown.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\prevening %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\prevening.pubxml" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
