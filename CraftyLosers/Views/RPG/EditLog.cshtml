@@ -26,7 +26,7 @@
     <hr />
     
     @Html.LabelFor(model => model.WorkoutDate)
-    @Html.EditorFor(model => model.WorkoutDate)
+    @Html.TextBoxFor(model => model.WorkoutDate, "{0:MM/dd/yyyy}")
     @Html.ValidationMessageFor(model => model.WorkoutDate)
 
     @Html.LabelFor(model => model.Qty)

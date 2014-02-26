@@ -90,7 +90,7 @@ namespace CraftyLosers.Controllers
         {
             var user = db.Users.Include("WeightCheckIns").Where(e => e.UserName == HttpContext.User.Identity.Name).FirstOrDefault();
 
-            if (user.WeightCheckIns.Count > 0 && Convert.ToDecimal(user.GoalWeight) > 80)
+            if (user.WeightCheckIns.Any())
             {
                 var stats = new Stats(user);
 
@@ -99,7 +99,7 @@ namespace CraftyLosers.Controllers
             else
             {
                 ModelState.AddModelError("", "You need to have your Intial Weight, Goal Weight, and at least one Check In Weight entered to view Stats.");
-                return View();
+                return View(new Stats(user));
             }
         }
 
@@ -109,7 +109,25 @@ namespace CraftyLosers.Controllers
             var weights = user.WeightCheckIns.Select(e => e.Weight).ToList();
             var dates = user.WeightCheckIns.Select(e => e.CheckInDate).ToList();
             var chart = new Chart(width: 600, height: 440, theme: ChartTheme.Blue);
-            chart.SetYAxis(min: Convert.ToDouble(Math.Round(weights.Min()) - 1), max: Convert.ToDouble(Math.Round(weights.Max()) + 1));
+            // add starting weight to weights
+            if (user.StartWeight.HasValue)
+            {
+                weights.Insert(0, user.StartWeight.Value);
+                // add competition start date
+                dates.Insert(0, Convert.ToDateTime("2/17/2014"));
+            }
+            
+            // add ending weight to weights
+            if(user.EndWeight.HasValue)
+            {
+                weights.Add(user.EndWeight.Value);
+                //add competition end date
+                dates.Add(Convert.ToDateTime("5/9/2014"));
+            }
+            var minValue = user.GoalWeight.HasValue ? Convert.ToDouble(Math.Round(user.GoalWeight.Value) - 1) : Convert.ToDouble(Math.Round(weights.Min()) - 1);
+            chart.SetYAxis(min: minValue, max: Convert.ToDouble(Math.Round(weights.Max()) + 1));
+            //chart.SetYAxis(min: Convert.ToDouble(Math.Round(weights.Min()) - 1), max: Convert.ToDouble(Math.Round(weights.Max()) + 1));
+            
             chart.AddSeries(
                     name: "Checkins",
                     chartType: "Line",

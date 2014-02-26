@@ -19,9 +19,13 @@ namespace CraftyLosers.ViewModels
                 GoalWeight = Convert.ToDecimal(user.GoalWeight);
             if (user.WeightCheckIns != null)
             {
-                if (user.WeightCheckIns.Count > 0)
+                if (user.WeightCheckIns.Any())
                 {
                     CurrentWeight = user.WeightCheckIns.OrderByDescending(e => e.CheckInDate).ToList()[0].Weight;
+                }
+                else
+                {
+                    CurrentWeight = user.StartWeight.Value;
                 }
             }
             if (user.EndWeight != null)
@@ -53,7 +57,11 @@ namespace CraftyLosers.ViewModels
         {
             get
             {
-                return PoundsLost / StartingWeight * 100;
+                if (PoundsLost > 0)
+                {
+                    return PoundsLost / StartingWeight * 100;
+                }
+                return 0;
             }
         }
 
