@@ -16,8 +16,8 @@ namespace CraftyLosers.Controllers
         {
             var users = db.Users.Include("WeightCheckIns").Where(e =>
                 (e.WeightCheckIns.Count > 0 || e.EndWeight != null) &&
-                e.StartWeight.Value >= 80 &&
-                (e.GoalWeight.Value >= 80 || e.EndWeight != null));
+                e.StartWeight.Value >= 80 && e.EndWeight != null);
+                //(e.GoalWeight.Value >= 80 || e.EndWeight != null));
 
             List<Stats> stats = new List<Stats>();
 
