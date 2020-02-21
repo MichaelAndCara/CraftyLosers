@@ -27,3 +27,4 @@ namespace CraftyLosers.Repositories
         public DbSet<Achievement> Achievements { get; set; }
     }
 }
+
